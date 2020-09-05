@@ -23,20 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8683bf72-f489-4cfb-9901-beb32219967b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/Controllers/WeatherForecastController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/Startup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/TechnicalRadiation.WebApi.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/WeatherForecast.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TechnicalRadiation.WebApi/appsettings.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Envelope.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/WeatherForecastController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/WeatherForecast.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/Class1.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/TechnicalRadiation.Models.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/TechnicalRadiation.Models.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.TechnicalRadiation.WebApi">
     <configuration name="TechnicalRadiation.WebApi" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
@@ -109,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1599306055956</updated>
       <workItem from="1599306064979" duration="308000" />
-      <workItem from="1599306737340" duration="1338000" />
+      <workItem from="1599306737340" duration="3326000" />
     </task>
     <servers />
   </component>
@@ -134,22 +128,22 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1599307833143">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1599308276554">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1599307833143" />
-    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1599307833142">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1599308276554">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1599307833142" />
-    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1599307833142">
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1599308276554">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1599307833142" />
-    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1599307833143">
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1599308276554">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1599307833143" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
     <state x="233" y="77" key="Rider.ProjectTemplateDialog.Size" timestamp="1599306130732">
       <screen x="0" y="0" width="1280" height="689" />
     </state>

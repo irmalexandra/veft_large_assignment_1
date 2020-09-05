@@ -7,7 +7,14 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="TechnicalRadiation.Models" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
-        <e p="Class1.cs" t="Include" />
+        <e p="Dtos" t="Include" />
+        <e p="Entities" t="Include" />
+        <e p="Envelope.cs" t="Include" />
+        <e p="HyperMedia" t="Include">
+          <e p="HyperMediaExtensions.cs" t="Include" />
+          <e p="HyperMediaModel.cs" t="Include" />
+        </e>
+        <e p="InputModels" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
