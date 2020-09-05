@@ -18,7 +18,11 @@ namespace TechnicalRadiation.Repositories
                 Slug = category.Slug
             };
         }
-        
+        public IEnumerable<CategoryDto> GetAllCategories()
+        {
+            var category = DataProvider.Categories.Select(c => ToCategoryDto(c));
+            return category;
+        }
         public CategoryDto GetCategoryById(int id)
         {
             var category = DataProvider.Categories.FirstOrDefault(n => n.Id == id);
@@ -26,10 +30,6 @@ namespace TechnicalRadiation.Repositories
             return ToCategoryDto(category);
         }
 
-        public IEnumerable<CategoryDto> GetAllCategories()
-        {
-            var category = DataProvider.Categories.Select(c => ToCategoryDto(c));
-            return category;
-        }
+
     }
 }

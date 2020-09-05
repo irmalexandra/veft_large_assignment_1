@@ -19,6 +19,12 @@ namespace TechnicalRadiation.Repositories
             };
         }
         
+        public IEnumerable<AuthorDto> GetAllAuthors()
+        {
+            var author = DataProvider.Authors.Select(a => ToAuthorDto(a));
+            return author;
+        }
+        
         public AuthorDto GetAuthorById(int id)
         {
             var author = DataProvider.Authors.FirstOrDefault(a => a.Id == id);
@@ -26,11 +32,7 @@ namespace TechnicalRadiation.Repositories
             return ToAuthorDto(author);
         }
 
-        public IEnumerable<AuthorDto> GetAllAuthors()
-        {
-            var author = DataProvider.Authors.Select(a => ToAuthorDto(a));
-            return author;
-        }
+
 
 
     }

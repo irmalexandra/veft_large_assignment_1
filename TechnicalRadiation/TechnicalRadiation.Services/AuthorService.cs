@@ -15,15 +15,17 @@ namespace TechnicalRadiation.Services
             _authorRepository = new AuthorRepository();  // instance of class
             
         }
-
+        
+        public IEnumerable<AuthorDto> GetAllAuthors()
+        {
+            return _authorRepository.GetAllAuthors();
+        }
+        
         public AuthorDto GetAuthorById(int id)
         {
             return _authorRepository.GetAuthorById(id);
         }
 
-        public IEnumerable<AuthorDto> GetAllAuthors()
-        {
-            return _authorRepository.GetAllAuthors();
-        }
+
     }
 }

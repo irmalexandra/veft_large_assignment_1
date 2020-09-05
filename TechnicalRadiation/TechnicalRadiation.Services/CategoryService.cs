@@ -14,15 +14,17 @@ namespace TechnicalRadiation.Services
             _categoryRepository = new CategoryRepository();  // instance of class
             
         }
-
+        
+        public IEnumerable<CategoryDto> GetAllCategories()
+        {
+            return _categoryRepository.GetAllCategories();
+        }
+        
         public CategoryDto GetCategoryById(int id)
         {
             return _categoryRepository.GetCategoryById(id);
         }
 
-        public IEnumerable<CategoryDto> GetAllCategories()
-        {
-            return _categoryRepository.GetAllCategories();
-        }
+
     }
 }
