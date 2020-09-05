@@ -23,13 +23,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8683bf72-f489-4cfb-9901-beb32219967b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Envelope.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDetailDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDetailDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Author.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Category.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItemAuthors.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItemCategories.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/AuthorInputModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/CategoryInputModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/NewsItemsInputModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/AuthorRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/CategoryRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/Data/DataProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/NewsItemRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/TechnicalRadiation.Repositories.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/AuthorService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/CategoryService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/NewsItemService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/TechnicalRadiation.Services.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/Class1.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/TechnicalRadiation.Models.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/TechnicalRadiation.Models.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/TechnicalRadiation.WebApi.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.WebApi/TechnicalRadiation.WebApi.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.sln" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,19 +68,53 @@
         <option value="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/RentalController.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/AuthorsController.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.WebApi/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/Class1.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Services/Class1.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Categories.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Category.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItemCategories.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItemAuthors.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Author.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItem.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDetailDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDetailDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/CategoryInputModel.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/NewsItemsInputModel.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/AuthorInputModel.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/Data/DataProvider.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/CategoryRepository.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Services/CategoryService.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/test.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/NewsItemRepository.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Services/NewsItemService.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/AuthorRepository.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Services/AuthorService.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1h5foYQxybN39RjBtsxhZFeUELD" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
   </component>
@@ -104,6 +160,7 @@
       <updated>1599306055956</updated>
       <workItem from="1599306064979" duration="308000" />
       <workItem from="1599306737340" duration="3326000" />
+      <workItem from="1599313048005" duration="18744000" />
     </task>
     <servers />
   </component>
@@ -125,28 +182,46 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1599308276554">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state x="512" y="237" key="#Notifications" timestamp="1599313078662">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="512" y="237" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1599313078662" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1599333222586">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1599308276554">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599333222586" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1599333222586">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1599308276554">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599333222586" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1599333222586">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1599308276554">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599333222586" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1599333222586">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state x="233" y="77" key="Rider.ProjectTemplateDialog.Size" timestamp="1599306130732">
-      <screen x="0" y="0" width="1280" height="689" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599333222586" />
+    <state x="280" y="92" key="Rider.ProjectTemplateDialog.Size" timestamp="1599313593508">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="233" y="77" key="Rider.ProjectTemplateDialog.Size/0.0.1280.689@0.0.1280.689" timestamp="1599306130732" />
+    <state x="280" y="92" key="Rider.ProjectTemplateDialog.Size/0.0.1536.824@0.0.1536.824" timestamp="1599313593508" />
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog" timestamp="1599318911440">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1599318911440" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1599322827608">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1599322827608" />
   </component>
 </project>
