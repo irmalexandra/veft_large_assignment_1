@@ -23,7 +23,7 @@
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
-          <e p="WeatherForecastController.cs" t="Include" />
+          <e p="TechnicalRadiationController.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -38,7 +38,6 @@
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="TechnicalRadiation.WebApi.csproj" t="IncludeRecursive" />
-        <e p="WeatherForecast.cs" t="Include" />
       </e>
     </e>
   </component>
