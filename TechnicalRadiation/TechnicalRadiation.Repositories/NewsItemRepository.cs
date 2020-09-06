@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
+using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories.Data;
 
 namespace TechnicalRadiation.Repositories
@@ -40,6 +41,23 @@ namespace TechnicalRadiation.Repositories
             
         }
 
+        private NewsItem ToNewsItem(NewsItemsInputModel newsItem, int id)
+        {
+            return new NewsItem
+            {
+                Id = id,
+                Title = newsItem.Title,
+                ImageSource = newsItem.ImgSource,
+                ShortDescription = newsItem.ShortDescription,
+                LongDescription = newsItem.LongDescription,
+                PublishedDate = newsItem.PublishDate,
+                
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
+
+        }
+
         
         public IEnumerable<NewsItemDto> GetAllNewsItems() 
         {
@@ -63,6 +81,25 @@ namespace TechnicalRadiation.Repositories
                 where AuthorNews.AuthorId == id
                 select ToNewsItemDto(News);
             return thing;
+
+        }
+
+        public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)
+        {
+            var nextId = DataProvider.NewsItems.OrderByDescending(n => n.Id)
+                .FirstOrDefault().Id;
+            if (nextId == null)
+            {
+                nextId = 1;
+            }
+            else
+            {
+                nextId += 1;
+            }
+
+            var entity = ToNewsItem(newsItem, nextId);
+            DataProvider.NewsItems.Add(entity);
+            return ToNewsItemDto(entity);
 
         }
         

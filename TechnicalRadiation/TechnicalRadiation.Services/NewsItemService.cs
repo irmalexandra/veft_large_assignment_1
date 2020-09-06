@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
+using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 
 namespace TechnicalRadiation.Services
@@ -31,6 +32,10 @@ namespace TechnicalRadiation.Services
             return _newsItemRepository.GetNewsItemsByAuthorId(id);
         }
 
+        public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)
+        {
+            return _newsItemRepository.CreateNewsItem(newsItem);
+        }
 
     }
 }

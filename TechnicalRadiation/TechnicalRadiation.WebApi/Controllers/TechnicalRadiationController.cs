@@ -1,9 +1,13 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Linq;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 using TechnicalRadiation.Services;
+using TechnicalRadiation.WebApi.Attributes;
 
 namespace TechnicalRadiation.WebApi.Controllers
 {
@@ -13,6 +17,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         private NewsItemService _newsItemService;
         private CategoryService _categoryService;
         private AuthorService _authorService;
+        
 
 
         public TechnicalRadiationController()  // Constructor
@@ -74,17 +79,25 @@ namespace TechnicalRadiation.WebApi.Controllers
         
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!! Everything below is super authorized. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-        [Route("")]
+        [Route("", Name = "CreateNewsItem")]
+        [Authorization]
         [HttpPost]
         public IActionResult CreateNewsItem([FromBody] NewsItemsInputModel newsItem)
         {
+
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine(DateTime.Now);
+                return BadRequest("The News item model was badly constructed, feel bad");
+            }
+            var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
             
+            return CreatedAtRoute("CreateNewsItem", new {id = newsItemDto.Id} , null);
 
-
-            return Ok();
         }
 
         [Route("categories")]
+        [Authorization]
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CategoryInputModel category)
         {
@@ -93,6 +106,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
 
         [Route("authors")]
+        [Authorization]
         [HttpPost]
         public IActionResult CreateAuthor([FromBody] AuthorInputModel author)
         {
@@ -100,6 +114,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
 
         [Route("{id:int}")]
+        [Authorization]
         [HttpPut]
         public IActionResult UpdateNewsItem([FromBody] NewsItemsInputModel newsitem, int id)
         {
@@ -107,12 +122,14 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
         
         [Route("authors/{id:int}")]
+        [Authorization]
         [HttpPut]
         public IActionResult UpdateAuthor([FromBody] AuthorInputModel author, int id)
         {
             return Ok();
         }
         [Route("categories/{id:int}")]
+        [Authorization]
         [HttpPut]
         public IActionResult UpdateCategory([FromBody] CategoryInputModel category, int id)
         {
@@ -120,6 +137,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         }   
         
         [Route("{id:int}")]
+        [Authorization]
         [HttpDelete]
         public IActionResult DeleteNewsItemById(int id)
         {
@@ -127,12 +145,14 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
         
         [Route("authors/{id:int}")]
+        [Authorization]
         [HttpDelete]
         public IActionResult DeleteAuthorById(int id)
         {
             return NoContent();
         }
         [Route("categories/{id:int}")]
+        [Authorization]
         [HttpDelete]
         public IActionResult DeleteCategoryById(int id)
         {
@@ -140,6 +160,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
 
         [Route("authors/{authorId:int}/newsItems/{newsItemId:int}")]
+        [Authorization]
         [HttpPatch]
         // NewsItemAuthors connection table thing
         public IActionResult LinkAuthorToNewsItem(int authorId, int newsItemId)
