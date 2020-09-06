@@ -136,6 +136,12 @@ namespace TechnicalRadiation.Repositories.Data
                 AuthorId = 3,
                 NewsItemId = 2
             }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 3,
+                NewsItemId = 3
+            }
         };
 
         public static List<NewsItemCategories> NewsItemCategories = new List<NewsItemCategories>

@@ -69,7 +69,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpGet]
         public IActionResult GetNewsItemsByAuthorId(int id)
         {
-            return Ok($"dis is lonely authors work: {id}");
+            return Ok(_newsItemService.GetNewsByAuthor(id));
         }
         
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!! Everything below is super authorized. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!

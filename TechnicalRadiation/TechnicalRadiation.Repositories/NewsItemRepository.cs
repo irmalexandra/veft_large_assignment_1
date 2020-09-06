@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Repositories.Data;
@@ -42,8 +44,8 @@ namespace TechnicalRadiation.Repositories
         public IEnumerable<NewsItemDto> GetAllNewsItems() 
         {
             
-            var newsItem = DataProvider.NewsItems.Select(r => ToNewsItemDto(r));
-            return newsItem;
+            var newsItems = DataProvider.NewsItems.Select(r => ToNewsItemDto(r));
+            return newsItems;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)
@@ -52,6 +54,18 @@ namespace TechnicalRadiation.Repositories
             
             return ToNewsItemDetailDto(newsItem);
         }
+
+        public IEnumerable<NewsItemDto> GetNewsItemsByAuthorId(int id)
+        {
+            
+            var thing = from News in DataProvider.NewsItems
+                join AuthorNews in DataProvider.NewsItemAuthors on News.Id equals AuthorNews.NewsItemId
+                where AuthorNews.AuthorId == id
+                select ToNewsItemDto(News);
+            return thing;
+
+        }
+        
     }
 }
 /*

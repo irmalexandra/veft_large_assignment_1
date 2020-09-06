@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TechnicalRadiation.Models.Dtos;
+using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Repositories;
 
 namespace TechnicalRadiation.Services
@@ -23,6 +24,11 @@ namespace TechnicalRadiation.Services
         public NewsItemDetailDto GetNewsItemById(int id)
         {
             return _newsItemRepository.GetNewsItemById(id);
+        }
+
+        public IEnumerable<NewsItemDto> GetNewsByAuthor(int id)
+        {
+            return _newsItemRepository.GetNewsItemsByAuthorId(id);
         }
 
 
