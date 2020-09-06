@@ -7,4 +7,6 @@
         public string Slug { get; set; }
         public int NumberOfNewsItems { get; set; }
     }
+    
+    
 }

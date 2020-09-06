@@ -22,14 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8683bf72-f489-4cfb-9901-beb32219967b" name="Default Changelist" comment=" Query still used">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TechnicalRadiation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Repositories/AuthorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/AuthorRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Repositories/CategoryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Repositories/CategoryRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Services/AuthorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/AuthorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Services/CategoryService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Services/CategoryService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" afterDir="false" />
+    <list default="true" id="8683bf72-f489-4cfb-9901-beb32219967b" name="Default Changelist" comment=" Query still the best">
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaModel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,10 +55,6 @@
         <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/NewsItemAuthors.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Entities/Author.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDetailDto.cs" />
-        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" />
-        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDto.cs" />
-        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDetailDto.cs" />
-        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDto.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/CategoryInputModel.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Models/InputModels/AuthorInputModel.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/test.cs" />
@@ -80,9 +71,14 @@
         <option value="$PROJECT_DIR$/TechnicalRadiation.Services/CategoryService.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/CategoryRepository.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.WebApi/Controllers/TechnicalRadiationController.cs" />
-        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Repositories/AuthorRepository.cs" />
         <option value="$PROJECT_DIR$/TechnicalRadiation.Services/AuthorService.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/AuthorDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDetailDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/NewsItemDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/Dtos/CategoryDetailDto.cs" />
+        <option value="$PROJECT_DIR$/TechnicalRadiation.Models/HyperMedia/HyperMediaModel.cs" />
       </list>
     </option>
   </component>
@@ -153,7 +149,7 @@
       <updated>1599306055956</updated>
       <workItem from="1599306064979" duration="308000" />
       <workItem from="1599306737340" duration="3326000" />
-      <workItem from="1599313048005" duration="39650000" />
+      <workItem from="1599313048005" duration="40182000" />
     </task>
     <task id="LOCAL-00001" summary="fkn everything bro&#10;All get details and get all + the rest of this fuckin thing I'm not going to count it all">
       <created>1599333996506</created>
@@ -176,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599408085842</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=" Query still the best">
+      <created>1599411672083</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1599411672083</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,33 +205,34 @@
     <MESSAGE value="fkn everything bro&#10;All get details and get all + the rest of this fuckin thing I'm not going to count it all" />
     <MESSAGE value="Query rules" />
     <MESSAGE value=" Query still used" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Query still used" />
+    <MESSAGE value=" Query still the best" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Query still the best" />
   </component>
   <component name="WindowStateProjectService">
     <state x="512" y="237" key="#Notifications" timestamp="1599313078662">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="512" y="237" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1599313078662" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1599410781491">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1599411815379">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599410781491" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1599410781491">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599411815379" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1599411815379">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599410781491" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1599410781491">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599411815379" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1599411815378">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599410781491" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1599410781491">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599411815378" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1599411815379">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1599308276554" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599410781491" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599411815379" />
     <state width="1493" height="174" key="GridCell.Tab.1.bottom" timestamp="1599407375077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -306,10 +310,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1599318911440" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599408087103">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1599411673881">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599408087103" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1599411673881" />
     <state width="775" height="419" key="XDebugger.FullValuePopup" timestamp="1599393072965">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
