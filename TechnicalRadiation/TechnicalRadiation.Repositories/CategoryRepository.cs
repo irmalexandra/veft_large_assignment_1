@@ -26,7 +26,7 @@ namespace TechnicalRadiation.Repositories
             {
                 Id = id,
                 Name = category.Name,
-                Slug = category.Name.ToLower(),
+                Slug = category.Name.ToLower().Replace(" ", "-"),
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
             };

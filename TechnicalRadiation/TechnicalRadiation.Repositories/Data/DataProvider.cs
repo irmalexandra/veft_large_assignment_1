@@ -6,7 +6,7 @@ namespace TechnicalRadiation.Repositories.Data
 {
     public static class DataProvider
     {
-        private static readonly string _adminName = "RentalAdmin";
+        private static readonly string _adminName = "TechnicalRadiationAdmin";
 
         public static List<Author> Authors = new List<Author>
         {

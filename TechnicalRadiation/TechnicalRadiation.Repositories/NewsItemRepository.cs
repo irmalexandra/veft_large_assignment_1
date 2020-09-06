@@ -13,7 +13,7 @@ namespace TechnicalRadiation.Repositories
 {
     public class NewsItemRepository
     {
-        
+        private static readonly string _adminName = "TechnicalRadiationAdmin";
         private NewsItemDto ToNewsItemDto(NewsItem newsitem)
         {
             return new NewsItemDto
@@ -61,7 +61,6 @@ namespace TechnicalRadiation.Repositories
         
         public IEnumerable<NewsItemDto> GetAllNewsItems() 
         {
-            
             var newsItems = DataProvider.NewsItems.Select(r => ToNewsItemDto(r));
             return newsItems;
         }
@@ -75,32 +74,38 @@ namespace TechnicalRadiation.Repositories
 
         public IEnumerable<NewsItemDto> GetNewsItemsByAuthorId(int id)
         {
-            
-            var thing = from News in DataProvider.NewsItems
-                join AuthorNews in DataProvider.NewsItemAuthors on News.Id equals AuthorNews.NewsItemId
-                where AuthorNews.AuthorId == id
-                select ToNewsItemDto(News);
-            return thing;
-
+            var query = from news in DataProvider.NewsItems
+                join authorNews in DataProvider.NewsItemAuthors on news.Id equals authorNews.NewsItemId
+                where authorNews.AuthorId == id
+                select ToNewsItemDto(news);
+            return query;
         }
 
         public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)
         {
-            var nextId = DataProvider.NewsItems.OrderByDescending(n => n.Id)
-                .FirstOrDefault().Id;
-            if (nextId == null)
-            {
-                nextId = 1;
-            }
-            else
-            {
-                nextId += 1;
-            }
-
+            var nextId = DataProvider.NewsItems.Count()+1;
+            
             var entity = ToNewsItem(newsItem, nextId);
             DataProvider.NewsItems.Add(entity);
             return ToNewsItemDto(entity);
+        }
 
+        public void UpdateNewsItemById(NewsItemsInputModel newsItem, int id)
+        {
+            NewsItem oldNewsItem = DataProvider.NewsItems.FirstOrDefault(news => news.Id == id);
+            if (oldNewsItem == null)
+            {
+                return;
+                
+            }
+
+            oldNewsItem.Title = newsItem.Title;
+            oldNewsItem.ImageSource = newsItem.ImgSource;
+            oldNewsItem.LongDescription = newsItem.LongDescription;
+            oldNewsItem.ShortDescription = newsItem.ShortDescription;
+            oldNewsItem.PublishedDate = newsItem.PublishDate;
+            oldNewsItem.ModifiedBy = _adminName;
+            oldNewsItem.ModifiedDate = DateTime.Now;
         }
         
     }

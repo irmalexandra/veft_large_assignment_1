@@ -128,7 +128,12 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateNewsItem([FromBody] NewsItemsInputModel newsitem, int id)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _newsItemService.UpdateNewsItemById(newsitem, id);
+            return NoContent();
         }
         
         [Route("authors/{id:int}")]
