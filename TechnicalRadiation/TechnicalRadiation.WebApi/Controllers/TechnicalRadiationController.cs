@@ -169,13 +169,19 @@ namespace TechnicalRadiation.WebApi.Controllers
             return NoContent();
         }
 
-        [Route("authors/{authorId:int}/newsItems/{newsItemId:int}")]
+        [Route("authors/{authorId:int}/newsItems/{newsItemId:int}", Name = "CreateNewsItemAuthor")]
         [Authorization]
         [HttpPatch]
-        // NewsItemAuthors connection table thing
+        // NewsItemAuthors connection table
         public IActionResult LinkAuthorToNewsItem(int authorId, int newsItemId)
         {
-            return NoContent();
+            var newsItemAuthor = _authorService.CreateNewsItemAuthor(authorId, newsItemId);
+            if (newsItemAuthor != null)
+            {
+                return CreatedAtRoute("CreateNewsItemAuthor",null);
+            }
+
+            return BadRequest();
         }
         
         
