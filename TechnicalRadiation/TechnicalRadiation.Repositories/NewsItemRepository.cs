@@ -58,11 +58,19 @@ namespace TechnicalRadiation.Repositories
 
         }
 
-        
-        public IEnumerable<NewsItemDto> GetAllNewsItems() 
+        private NewsItemDto CreateLinksForNewsItem(NewsItemDto newsItem)
         {
-            var newsItems = DataProvider.NewsItems.Select(r => ToNewsItemDto(r));
-            return newsItems;
+            // newsItem.Links["self"] = $"/api/{newsItem.Id}";
+            return null;
+        }
+        
+        public IEnumerable<NewsItemDto> GetAllNewsItems(int listStart, int listEnd) 
+        {
+            var query = 
+                from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
+                orderby news.PublishedDate
+                select ToNewsItemDto(news);
+            return query;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)

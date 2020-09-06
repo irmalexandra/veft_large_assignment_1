@@ -17,9 +17,12 @@ namespace TechnicalRadiation.Services
             
         }
         
-        public IEnumerable<NewsItemDto> GetAllNewsItems()
+        public IEnumerable<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
         {
-            return _newsItemRepository.GetAllNewsItems();
+            var listStart = 0;
+            if (pageNumber > 1) {listStart = pageSize * pageNumber - 1;}
+            var listEnd = pageSize + listStart;
+            return _newsItemRepository.GetAllNewsItems(listStart, listEnd);
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)

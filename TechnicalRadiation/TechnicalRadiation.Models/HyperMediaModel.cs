@@ -7,7 +7,10 @@ namespace TechnicalRadiation.Models
     {
         public HyperMediaModel() { Links = new ExpandoObject(); }
         [JsonProperty(PropertyName = "_links")]
+        
+        
         public ExpandoObject Links { get; set; }
+        
         
         
 

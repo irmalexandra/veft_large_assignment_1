@@ -1,4 +1,6 @@
-﻿namespace TechnicalRadiation.Models.Dtos
+﻿using System.Dynamic;
+
+namespace TechnicalRadiation.Models.Dtos
 {
     public class NewsItemDto : HyperMediaModel
     {
@@ -6,5 +8,10 @@
         public string Title { get; set; }
         public string ImageSource { get; set; }
         public string ShortDescription { get; set; }
+        
+        
+        
     }
+    
+    
 }
