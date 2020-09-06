@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TechnicalRadiation.Models.Dtos;
+using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 
 namespace TechnicalRadiation.Services
@@ -25,6 +26,10 @@ namespace TechnicalRadiation.Services
             return _categoryRepository.GetCategoryById(id);
         }
 
+        public CategoryDto CreateCategory(CategoryInputModel category)
+        {
+            return _categoryRepository.CreateNewCategory(category);
+        }
 
     }
 }

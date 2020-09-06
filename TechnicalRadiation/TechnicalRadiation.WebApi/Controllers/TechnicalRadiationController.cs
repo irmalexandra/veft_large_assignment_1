@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
@@ -87,7 +88,6 @@ namespace TechnicalRadiation.WebApi.Controllers
 
             if (!ModelState.IsValid)
             {
-                Console.WriteLine(DateTime.Now);
                 return BadRequest("The News item model was badly constructed, feel bad");
             }
             var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
@@ -96,22 +96,32 @@ namespace TechnicalRadiation.WebApi.Controllers
 
         }
 
-        [Route("categories")]
+        [Route("categories", Name = "CreateCategory")]
         [Authorization]
         [HttpPost]
         public IActionResult CreateCategory([FromBody] CategoryInputModel category)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("The category was badly constructed");
+            }
 
-            return Ok();
+            var categoryDto = _categoryService.CreateCategory(category);
+            return CreatedAtRoute("CreateCategory", new {id = categoryDto.Id} , null);
         }
 
-        [Route("authors")]
+        [Route("authors", Name = "CreateAuthor")]
         [Authorization]
         [HttpPost]
         public IActionResult CreateAuthor([FromBody] AuthorInputModel author)
         {
-            return Ok();
-        }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("The author was badly constructed");
+            }
+
+            var authorDto = _authorService.CreateAuthor(author);
+            return CreatedAtRoute("CreateAuthor", new {id = authorDto.Id} , null);        }
 
         [Route("{id:int}")]
         [Authorization]
