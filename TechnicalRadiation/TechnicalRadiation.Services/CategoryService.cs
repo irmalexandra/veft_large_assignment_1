@@ -31,5 +31,9 @@ namespace TechnicalRadiation.Services
             return _categoryRepository.CreateNewCategory(category);
         }
 
+        public bool UpdateCategoryById(CategoryInputModel category, int id)
+        {
+            return _categoryRepository.UpdateCategoryById(category, id);
+        }
     }
 }

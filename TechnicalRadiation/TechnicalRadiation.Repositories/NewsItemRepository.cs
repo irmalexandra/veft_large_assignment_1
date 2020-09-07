@@ -113,13 +113,12 @@ namespace TechnicalRadiation.Repositories
             return ToNewsItemDto(entity);
         }
 
-        public void UpdateNewsItemById(NewsItemsInputModel newsItem, int id)
+        public bool UpdateNewsItemById(NewsItemsInputModel newsItem, int id)
         {
             NewsItem oldNewsItem = DataProvider.NewsItems.FirstOrDefault(news => news.Id == id);
             if (oldNewsItem == null)
             {
-                return;
-                
+                return false;
             }
 
             oldNewsItem.Title = newsItem.Title;
@@ -129,6 +128,8 @@ namespace TechnicalRadiation.Repositories
             oldNewsItem.PublishedDate = newsItem.PublishDate;
             oldNewsItem.ModifiedBy = _adminName;
             oldNewsItem.ModifiedDate = DateTime.Now;
+
+            return true;
         }
         
     }

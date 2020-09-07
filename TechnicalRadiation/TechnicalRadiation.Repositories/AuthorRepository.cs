@@ -12,7 +12,7 @@ namespace TechnicalRadiation.Repositories
 {
     public class AuthorRepository
     {
-        
+        private static readonly string _adminName = "TechnicalRadiationAdmin";
         private AuthorDto ToAuthorDto (Author author)
         {
             return new AuthorDto()
@@ -79,16 +79,7 @@ namespace TechnicalRadiation.Repositories
 
         public AuthorDto CreateAuthor(AuthorInputModel author)
         {
-            var nextId = DataProvider.Authors.OrderByDescending(d => d.Id).FirstOrDefault().Id;
-            
-            if (nextId == null)
-            {
-                nextId = 1;
-            }
-            else
-            {
-                nextId += 1;
-            }
+            var nextId = DataProvider.Authors.Count()+1;
             var entity = ToAuthor(author, nextId);
             DataProvider.Authors.Add(entity);
             return ToAuthorDto(entity);
@@ -105,5 +96,20 @@ namespace TechnicalRadiation.Repositories
         }
 
 
+        public bool UpdateAuthorById(AuthorInputModel newAuthor, int id)
+        {
+            Author oldAuthor = DataProvider.Authors.FirstOrDefault(author => author.Id == id);
+            if (oldAuthor == null)
+            {
+                return false;
+            }
+
+            oldAuthor.Name = newAuthor.Name;
+            oldAuthor.Bio = newAuthor.Bio;
+            oldAuthor.ProfileImageSource = newAuthor.ProfileImgSource;
+            oldAuthor.ModifiedBy = _adminName;
+            oldAuthor.ModifiedDate = DateTime.Now;
+            return true;
+        }
     }
 }
