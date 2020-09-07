@@ -4,19 +4,20 @@ using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
+using TechnicalRadiation.Models.Extensions;
 
 namespace TechnicalRadiation.Services
 {
     public class NewsItemService
     {
         private NewsItemRepository _newsItemRepository;
-
+        
         public NewsItemService() // Constructor
         {
             _newsItemRepository = new NewsItemRepository();
             
         }
-        
+
         public IEnumerable<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
         {
             var listStart = 0;

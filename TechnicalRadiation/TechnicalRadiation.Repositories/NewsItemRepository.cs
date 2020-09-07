@@ -8,6 +8,8 @@ using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories.Data;
+using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.Extensions;
 
 namespace TechnicalRadiation.Repositories
 {
@@ -57,19 +59,32 @@ namespace TechnicalRadiation.Repositories
             };
 
         }
-
         private NewsItemDto CreateLinksForNewsItem(NewsItemDto newsItem)
         {
-            // newsItem.Links["self"] = $"/api/{newsItem.Id}";
-            return null;
+            var self = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
+            var edit = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
+            var delete = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
+            
+            var query = from authorids in DataProvider.NewsItemAuthors
+                where authorids.NewsItemId == newsItem.Id
+                select authorids;
+            
+            
+            
+            newsItem.Links.AddReference("self", self);
+            newsItem.Links.AddReference("edit", edit);
+            newsItem.Links.AddReference("delete", delete);
+            // newsItem.Links.AddListReference("authors", $"/api/{query.authorId}");
+            
+            return newsItem;
         }
-        
+
         public IEnumerable<NewsItemDto> GetAllNewsItems(int listStart, int listEnd) 
         {
             var query = 
                 from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
                 orderby news.PublishedDate
-                select ToNewsItemDto(news);
+                select CreateLinksForNewsItem(ToNewsItemDto(news));
             return query;
         }
         

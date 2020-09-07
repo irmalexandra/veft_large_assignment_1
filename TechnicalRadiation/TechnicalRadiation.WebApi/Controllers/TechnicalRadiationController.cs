@@ -32,13 +32,16 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpGet]
         public IActionResult GetAllNews()
         {
-            int pageSize = 25;
-            int pageNumber = 0;
-            var sizeString = HttpContext.Request.Query["pageSize"];
-            var numberString = HttpContext.Request.Query["pageNumber"];
-            if (!int.TryParse(sizeString, out pageSize) || !int.TryParse(numberString, out pageNumber))
+            var pageSize = 25;
+            var pageNumber = 0;
+            if (HttpContext.Request.QueryString.HasValue)
             {
-                return BadRequest("Invalid parameters");
+                var sizeString = HttpContext.Request.Query["pageSize"];
+                var numberString = HttpContext.Request.Query["pageNumber"];
+                if (!int.TryParse(sizeString, out pageSize) || !int.TryParse(numberString, out pageNumber))
+                {
+                    return BadRequest("Invalid parameters");
+                }
             }
             return Ok(_newsItemService.GetAllNewsItems(pageSize, pageNumber));
         }
