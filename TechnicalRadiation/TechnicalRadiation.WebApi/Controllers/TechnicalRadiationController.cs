@@ -32,7 +32,18 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpGet]
         public IActionResult GetAllNews()
         {
-            return Ok(_newsItemService.GetAllNewsItems());
+            var pageSize = 25;
+            var pageNumber = 0;
+            if (HttpContext.Request.QueryString.HasValue)
+            {
+                var sizeString = HttpContext.Request.Query["pageSize"];
+                var numberString = HttpContext.Request.Query["pageNumber"];
+                if (!int.TryParse(sizeString, out pageSize) || !int.TryParse(numberString, out pageNumber))
+                {
+                    return BadRequest("Invalid parameters");
+                }
+            }
+            return Ok(_newsItemService.GetAllNewsItems(pageSize, pageNumber));
         }
 
         [Route("{id:int}")]
@@ -128,7 +139,12 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateNewsItem([FromBody] NewsItemsInputModel newsitem, int id)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            _newsItemService.UpdateNewsItemById(newsitem, id);
+            return NoContent();
         }
         
         [Route("authors/{id:int}")]
@@ -169,13 +185,19 @@ namespace TechnicalRadiation.WebApi.Controllers
             return NoContent();
         }
 
-        [Route("authors/{authorId:int}/newsItems/{newsItemId:int}")]
+        [Route("authors/{authorId:int}/newsItems/{newsItemId:int}", Name = "CreateNewsItemAuthor")]
         [Authorization]
         [HttpPatch]
-        // NewsItemAuthors connection table thing
+        // NewsItemAuthors connection table
         public IActionResult LinkAuthorToNewsItem(int authorId, int newsItemId)
         {
-            return NoContent();
+            var newsItemAuthor = _authorService.CreateNewsItemAuthor(authorId, newsItemId);
+            if (newsItemAuthor != null)
+            {
+                return CreatedAtRoute("CreateNewsItemAuthor",null);
+            }
+
+            return BadRequest();
         }
         
         

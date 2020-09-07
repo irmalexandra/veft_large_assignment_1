@@ -4,22 +4,26 @@ using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
+using TechnicalRadiation.Models.Extensions;
 
 namespace TechnicalRadiation.Services
 {
     public class NewsItemService
     {
         private NewsItemRepository _newsItemRepository;
-
+        
         public NewsItemService() // Constructor
         {
             _newsItemRepository = new NewsItemRepository();
             
         }
-        
-        public IEnumerable<NewsItemDto> GetAllNewsItems()
+
+        public IEnumerable<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
         {
-            return _newsItemRepository.GetAllNewsItems();
+            var listStart = 0;
+            if (pageNumber > 1) {listStart = pageSize * pageNumber - 1;}
+            var listEnd = pageSize + listStart;
+            return _newsItemRepository.GetAllNewsItems(listStart, listEnd);
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)
@@ -35,6 +39,11 @@ namespace TechnicalRadiation.Services
         public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)
         {
             return _newsItemRepository.CreateNewsItem(newsItem);
+        }
+
+        public void UpdateNewsItemById(NewsItemsInputModel newsitem, int id)
+        {
+            _newsItemRepository.UpdateNewsItemById(newsitem, id);
         }
 
     }

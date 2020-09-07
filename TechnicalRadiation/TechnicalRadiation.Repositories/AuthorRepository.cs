@@ -47,6 +47,23 @@ namespace TechnicalRadiation.Repositories
             };
 
         }
+
+        private NewsItemAuthors ToNewsItemAuthor(int authorId, int newsItemId)
+        {
+            return new NewsItemAuthors
+            {
+                AuthorId = authorId,
+                NewsItemId = newsItemId    
+
+            };
+        }
+
+        public bool CheckNewsItemAuthorRelation(int newsItemId)
+        {
+            
+            var exists = DataProvider.NewsItemAuthors.Exists(a => a.NewsItemId == newsItemId);
+            return exists;
+        }
         
         public IEnumerable<AuthorDto> GetAllAuthors()
         {
@@ -79,6 +96,13 @@ namespace TechnicalRadiation.Repositories
         }
 
 
+
+        public NewsItemAuthors CreateNewsItemAuthor(int authorId, int newsItemId)
+        {
+            var entity = ToNewsItemAuthor(authorId, newsItemId);
+            DataProvider.NewsItemAuthors.Add(entity);
+            return entity;
+        }
 
 
     }

@@ -6,7 +6,7 @@ namespace TechnicalRadiation.Repositories.Data
 {
     public static class DataProvider
     {
-        private static readonly string _adminName = "RentalAdmin";
+        private static readonly string _adminName = "TechnicalRadiationAdmin";
 
         public static List<Author> Authors = new List<Author>
         {
@@ -117,7 +117,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ImageSource = "4chan.net",
                 ShortDescription = "Practically 0 difference to be honest",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
-                PublishedDate = DateTime.Now,
+                PublishedDate = DateTime.MinValue,
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
