@@ -131,7 +131,11 @@ namespace TechnicalRadiation.Repositories
 
             return true;
         }
-        
+
+        public bool DeleteNewsItemById(int id)
+        {
+            return DataProvider.NewsItems.Remove(DataProvider.NewsItems.FirstOrDefault(news => news.Id == id));
+        }
     }
 }
 /*
