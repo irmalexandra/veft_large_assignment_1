@@ -58,11 +58,10 @@ namespace TechnicalRadiation.Repositories
             };
         }
 
-        public bool CheckNewsItemAuthorRelation(int newsItemId)
+        public bool CheckNewsItemAuthorRelation(int authorId, int newsItemId)
         {
-            
-            var exists = DataProvider.NewsItemAuthors.Exists(a => a.NewsItemId == newsItemId);
-            return exists;
+            var query = DataProvider.NewsItemAuthors.FirstOrDefault(a => a.AuthorId == authorId);
+            return query.NewsItemId == newsItemId;
         }
         
         public IEnumerable<AuthorDto> GetAllAuthors()

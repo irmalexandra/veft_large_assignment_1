@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -37,7 +38,7 @@ namespace TechnicalRadiation.Repositories
                 ShortDescription = newsitem.ShortDescription,
                 Title = newsitem.Title,
                 LongDescription = newsitem.LongDescription,
-                PublishedDate = newsitem.PublishedDate,
+                PublishDate = newsitem.PublishDate,
                 
             };
             
@@ -52,29 +53,24 @@ namespace TechnicalRadiation.Repositories
                 ImageSource = newsItem.ImgSource,
                 ShortDescription = newsItem.ShortDescription,
                 LongDescription = newsItem.LongDescription,
-                PublishedDate = newsItem.PublishDate,
+                PublishDate = newsItem.PublishDate,
                 
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
-            };
+            }; 
 
         }
         private NewsItemDto CreateLinksForNewsItem(NewsItemDto newsItem)
         {
-            var self = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            var edit = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            var delete = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            
+
             var query = from authorids in DataProvider.NewsItemAuthors
                 where authorids.NewsItemId == newsItem.Id
-                select authorids;
+                select authorids.NewsItemId;
             
-            
-            
-            newsItem.Links.AddReference("self", self);
-            newsItem.Links.AddReference("edit", edit);
-            newsItem.Links.AddReference("delete", delete);
-            // newsItem.Links.AddListReference("authors", $"/api/{query.authorId}");
+            newsItem.Links.AddReference("self", new { href = $"api/{newsItem.Id})" });
+            newsItem.Links.AddReference("edit", new { href = $"api/{newsItem.Id})" });
+            newsItem.Links.AddReference("delete", new { href = $"api/{newsItem.Id})" });
+            //newsItem.Links.AddListReference("authors", new { $"/api/authors/{query}"});
             
             return newsItem;
         }
@@ -83,7 +79,7 @@ namespace TechnicalRadiation.Repositories
         {
             var query = 
                 from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
-                orderby news.PublishedDate
+                orderby news.PublishDate
                 select CreateLinksForNewsItem(ToNewsItemDto(news));
             return query;
         }
@@ -91,7 +87,6 @@ namespace TechnicalRadiation.Repositories
         public NewsItemDetailDto GetNewsItemById(int id)
         {
             var newsItem = DataProvider.NewsItems.FirstOrDefault(n => n.Id == id);
-            
             return ToNewsItemDetailDto(newsItem);
         }
 
@@ -125,7 +120,7 @@ namespace TechnicalRadiation.Repositories
             oldNewsItem.ImageSource = newsItem.ImgSource;
             oldNewsItem.LongDescription = newsItem.LongDescription;
             oldNewsItem.ShortDescription = newsItem.ShortDescription;
-            oldNewsItem.PublishedDate = newsItem.PublishDate;
+            oldNewsItem.PublishDate = newsItem.PublishDate;
             oldNewsItem.ModifiedBy = _adminName;
             oldNewsItem.ModifiedDate = DateTime.Now;
 

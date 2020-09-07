@@ -93,7 +93,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ImageSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
-                PublishedDate = DateTime.Now,
+                PublishDate = DateTime.Now,
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -105,7 +105,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ImageSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
-                PublishedDate = DateTime.Now,
+                PublishDate = DateTime.Now,
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -117,7 +117,7 @@ namespace TechnicalRadiation.Repositories.Data
                 ImageSource = "4chan.net",
                 ShortDescription = "Practically 0 difference to be honest",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
-                PublishedDate = DateTime.MinValue,
+                PublishDate = DateTime.MinValue,
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -135,8 +135,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 AuthorId = 3,
                 NewsItemId = 2
-            }
-            ,
+            },
             new NewsItemAuthors
             {
                 AuthorId = 3,

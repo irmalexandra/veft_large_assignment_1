@@ -9,7 +9,7 @@ namespace TechnicalRadiation.Models.Entities
         public string ImageSource { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishDate { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
