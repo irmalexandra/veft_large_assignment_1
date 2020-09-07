@@ -18,16 +18,15 @@ namespace TechnicalRadiation.WebApi.Controllers
         private NewsItemService _newsItemService;
         private CategoryService _categoryService;
         private AuthorService _authorService;
-        
 
 
-        public TechnicalRadiationController()  // Constructor
+        public TechnicalRadiationController() // Constructor
         {
             _categoryService = new CategoryService();
             _newsItemService = new NewsItemService();
             _authorService = new AuthorService();
         }
-        
+
         [Route("")]
         [HttpGet]
         public IActionResult GetAllNews()
@@ -43,6 +42,7 @@ namespace TechnicalRadiation.WebApi.Controllers
                     return BadRequest("Invalid parameters");
                 }
             }
+
             return Ok(_newsItemService.GetAllNewsItems(pageSize, pageNumber));
         }
 
@@ -50,45 +50,44 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpGet]
         public IActionResult GetNewsById(int id)
         {
-            
             return Ok(_newsItemService.GetNewsItemById(id));
         }
-        
+
         [Route("categories")]
         [HttpGet]
         public IActionResult GetAllCategories()
         {
             return Ok(_categoryService.GetAllCategories());
         }
-        
+
         [Route("categories/{id:int}")]
         [HttpGet]
         public IActionResult GetCategoryById(int id)
         {
             return Ok(_categoryService.GetCategoryById(id));
         }
-        
+
         [Route("authors")]
         [HttpGet]
         public IActionResult GetAllAuthors()
         {
             return Ok(_authorService.GetAllAuthors());
         }
-        
+
         [Route("authors/{id:int}")]
         [HttpGet]
         public IActionResult GetAuthorById(int id)
         {
             return Ok(_authorService.GetAuthorById(id));
         }
-        
+
         [Route("authors/{id:int}/newsItems")]
         [HttpGet]
         public IActionResult GetNewsItemsByAuthorId(int id)
         {
             return Ok(_newsItemService.GetNewsByAuthor(id));
         }
-        
+
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!! Everything below is super authorized. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         [Route("", Name = "CreateNewsItem")]
@@ -96,15 +95,14 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpPost]
         public IActionResult CreateNewsItem([FromBody] NewsItemsInputModel newsItem)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest("The News item model was badly constructed, feel bad");
             }
-            var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
-            
-            return CreatedAtRoute("CreateNewsItem", new {id = newsItemDto.Id} , null);
 
+            var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
+
+            return CreatedAtRoute("CreateNewsItem", new {id = newsItemDto.Id}, null);
         }
 
         [Route("categories", Name = "CreateCategory")]
@@ -118,7 +116,7 @@ namespace TechnicalRadiation.WebApi.Controllers
             }
 
             var categoryDto = _categoryService.CreateCategory(category);
-            return CreatedAtRoute("CreateCategory", new {id = categoryDto.Id} , null);
+            return CreatedAtRoute("CreateCategory", new {id = categoryDto.Id}, null);
         }
 
         [Route("authors", Name = "CreateAuthor")]
@@ -132,7 +130,8 @@ namespace TechnicalRadiation.WebApi.Controllers
             }
 
             var authorDto = _authorService.CreateAuthor(author);
-            return CreatedAtRoute("CreateAuthor", new {id = authorDto.Id} , null);        }
+            return CreatedAtRoute("CreateAuthor", new {id = authorDto.Id}, null);
+        }
 
         [Route("{id:int}")]
         [Authorization]
@@ -143,14 +142,16 @@ namespace TechnicalRadiation.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             bool success = _newsItemService.UpdateNewsItemById(newsitem, id);
             if (success)
             {
                 return NoContent();
             }
+
             return NotFound();
         }
-        
+
         [Route("authors/{id:int}")]
         [Authorization]
         [HttpPut]
@@ -160,14 +161,16 @@ namespace TechnicalRadiation.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             bool success = _authorService.UpdateAuthorById(author, id);
             if (success)
             {
-                return NoContent();    
+                return NoContent();
             }
-            return NotFound();
 
+            return NotFound();
         }
+
         [Route("categories/{id:int}")]
         [Authorization]
         [HttpPut]
@@ -177,35 +180,56 @@ namespace TechnicalRadiation.WebApi.Controllers
             {
                 return BadRequest();
             }
+
             bool success = _categoryService.UpdateCategoryById(category, id);
             if (success)
             {
-                return NoContent();    
+                return NoContent();
             }
+
             return NotFound();
-        }   
-        
+        }
+
         [Route("{id:int}")]
         [Authorization]
         [HttpDelete]
         public IActionResult DeleteNewsItemById(int id)
         {
-            return NoContent();
+            bool success = _newsItemService.DeleteNewsItemById(id);
+            if (success)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
-        
+
         [Route("authors/{id:int}")]
         [Authorization]
         [HttpDelete]
         public IActionResult DeleteAuthorById(int id)
         {
-            return NoContent();
+            bool success = _authorService.DeleteAuthorById(id);
+            if (success)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
+
         [Route("categories/{id:int}")]
         [Authorization]
         [HttpDelete]
         public IActionResult DeleteCategoryById(int id)
         {
-            return NoContent();
+            bool success = _categoryService.DeleteCategoryById(id);
+            if (success)
+            {
+                return NoContent();
+            }
+
+            return NotFound();
         }
 
         [Route("authors/{authorId:int}/newsItems/{newsItemId:int}", Name = "CreateNewsItemAuthor")]
@@ -217,15 +241,10 @@ namespace TechnicalRadiation.WebApi.Controllers
             var newsItemAuthor = _authorService.CreateNewsItemAuthor(authorId, newsItemId);
             if (newsItemAuthor != null)
             {
-                return CreatedAtRoute("CreateNewsItemAuthor",null);
+                return CreatedAtRoute("CreateNewsItemAuthor", null);
             }
 
             return BadRequest();
         }
-        
-        
-            
-            
-            
     }
 }

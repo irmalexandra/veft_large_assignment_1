@@ -35,5 +35,10 @@ namespace TechnicalRadiation.Services
         {
             return _categoryRepository.UpdateCategoryById(category, id);
         }
+
+        public bool DeleteCategoryById(in int id)
+        {
+            return _categoryRepository.DeleteAuthorById(id);
+        }
     }
 }

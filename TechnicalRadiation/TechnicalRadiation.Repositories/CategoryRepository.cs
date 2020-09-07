@@ -68,5 +68,10 @@ namespace TechnicalRadiation.Repositories
             oldCategory.ModifiedDate = DateTime.Now;
             return true;
         }
+
+        public bool DeleteAuthorById(int id)
+        {
+            return DataProvider.Categories.Remove(DataProvider.Categories.FirstOrDefault(news => news.Id == id));
+        }
     }
 }

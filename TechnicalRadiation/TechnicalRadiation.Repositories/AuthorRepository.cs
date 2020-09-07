@@ -111,5 +111,10 @@ namespace TechnicalRadiation.Repositories
             oldAuthor.ModifiedDate = DateTime.Now;
             return true;
         }
+
+        public bool DeleteAuthorById(int id)
+        {
+            return DataProvider.Authors.Remove(DataProvider.Authors.FirstOrDefault(news => news.Id == id));
+        }
     }
 }
