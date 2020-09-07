@@ -143,8 +143,12 @@ namespace TechnicalRadiation.WebApi.Controllers
             {
                 return BadRequest();
             }
-            _newsItemService.UpdateNewsItemById(newsitem, id);
-            return NoContent();
+            bool success = _newsItemService.UpdateNewsItemById(newsitem, id);
+            if (success)
+            {
+                return NoContent();
+            }
+            return NotFound();
         }
         
         [Route("authors/{id:int}")]
@@ -152,14 +156,33 @@ namespace TechnicalRadiation.WebApi.Controllers
         [HttpPut]
         public IActionResult UpdateAuthor([FromBody] AuthorInputModel author, int id)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            bool success = _authorService.UpdateAuthorById(author, id);
+            if (success)
+            {
+                return NoContent();    
+            }
+            return NotFound();
+
         }
         [Route("categories/{id:int}")]
         [Authorization]
         [HttpPut]
         public IActionResult UpdateCategory([FromBody] CategoryInputModel category, int id)
         {
-            return Ok();
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            bool success = _categoryService.UpdateCategoryById(category, id);
+            if (success)
+            {
+                return NoContent();    
+            }
+            return NotFound();
         }   
         
         [Route("{id:int}")]

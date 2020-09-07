@@ -11,6 +11,7 @@ namespace TechnicalRadiation.Repositories
 {
     public class CategoryRepository
     {
+        private static readonly string _adminName = "TechnicalRadiationAdmin";
         private CategoryDto ToCategoryDto (Category category)
         {
             return new CategoryDto
@@ -45,16 +46,7 @@ namespace TechnicalRadiation.Repositories
         }
         public CategoryDto CreateNewCategory(CategoryInputModel categoryitem)
         {
-            var nextId = DataProvider.Categories.OrderByDescending(n => n.Id)
-                .FirstOrDefault().Id;
-            if (nextId == null)
-            {
-                nextId = 1;
-            }
-            else
-            {
-                nextId += 1;
-            }
+            var nextId = DataProvider.Categories.Count()+1;
 
             var entity = toCategoryItem(categoryitem, nextId);
             DataProvider.Categories.Add(entity);
@@ -62,5 +54,19 @@ namespace TechnicalRadiation.Repositories
 
         }
 
+        public bool UpdateCategoryById(CategoryInputModel category, int id)
+        {
+            Category oldCategory = DataProvider.Categories.FirstOrDefault(author => author.Id == id);
+            if (oldCategory == null)
+            {
+                return false;
+            }
+
+            oldCategory.Name = category.Name;
+            oldCategory.Slug = oldCategory.Name.ToLower().Replace(" ", "-");
+            oldCategory.ModifiedBy = _adminName;
+            oldCategory.ModifiedDate = DateTime.Now;
+            return true;
+        }
     }
 }

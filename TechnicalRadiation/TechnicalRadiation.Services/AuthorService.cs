@@ -43,5 +43,10 @@ namespace TechnicalRadiation.Services
             }
             return null;
         }
+
+        public bool UpdateAuthorById(AuthorInputModel author, int id)
+        {
+            return _authorRepository.UpdateAuthorById(author, id);
+        }
     }
 }
