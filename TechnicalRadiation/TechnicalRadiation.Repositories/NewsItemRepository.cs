@@ -60,27 +60,12 @@ namespace TechnicalRadiation.Repositories
             }; 
 
         }
-        private NewsItemDto CreateLinksForNewsItem(NewsItemDto newsItem)
-        {
-
-            var query = from authorids in DataProvider.NewsItemAuthors
-                where authorids.NewsItemId == newsItem.Id
-                select authorids.NewsItemId;
-            
-            newsItem.Links.AddReference("self", new { href = $"api/{newsItem.Id})" });
-            newsItem.Links.AddReference("edit", new { href = $"api/{newsItem.Id})" });
-            newsItem.Links.AddReference("delete", new { href = $"api/{newsItem.Id})" });
-            //newsItem.Links.AddListReference("authors", new { $"/api/authors/{query}"});
-            
-            return newsItem;
-        }
-
         public IEnumerable<NewsItemDto> GetAllNewsItems(int listStart, int listEnd) 
         {
             var query = 
                 from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
                 orderby news.PublishDate
-                select CreateLinksForNewsItem(ToNewsItemDto(news));
+                select ToNewsItemDto(news);
             return query;
         }
         
@@ -131,28 +116,6 @@ namespace TechnicalRadiation.Repositories
         {
             return DataProvider.NewsItems.Remove(DataProvider.NewsItems.FirstOrDefault(news => news.Id == id));
         }
+        
     }
 }
-/*
-public class OwnerRepository
-{
-    private IMapper _mapper;
-
-    public OwnerRepository(IMapper mapper)
-    {
-        _mapper = mapper;
-    }
-
-    public IEnumerable<OwnerDto> GetOwnersByRentalId(int rentalId)
-    {
-        return _mapper.Map<IEnumerable<OwnerDto>>(DataProvider.Owners.Where(o => o.RentalId == rentalId));
-    }
-
-    public OwnerDto GetOwnerByRentalId(int rentalId, int ownerId)
-    {
-        var owner = DataProvider.Owners.FirstOrDefault(o => o.Id == ownerId && o.RentalId == rentalId);
-        if (owner == null) { throw new Exception("Owner not found"); }
-        return _mapper.Map<OwnerDto>(owner);
-    }
-}
-*/
