@@ -143,7 +143,7 @@ namespace TechnicalRadiation.WebApi.Controllers
                 return BadRequest();
             }
 
-            bool success = _newsItemService.UpdateNewsItemById(newsitem, id);
+            var success = _newsItemService.UpdateNewsItemById(newsitem, id);
             if (success)
             {
                 return NoContent();
@@ -162,7 +162,7 @@ namespace TechnicalRadiation.WebApi.Controllers
                 return BadRequest();
             }
 
-            bool success = _authorService.UpdateAuthorById(author, id);
+            var success = _authorService.UpdateAuthorById(author, id);
             if (success)
             {
                 return NoContent();
@@ -181,7 +181,7 @@ namespace TechnicalRadiation.WebApi.Controllers
                 return BadRequest();
             }
 
-            bool success = _categoryService.UpdateCategoryById(category, id);
+            var success = _categoryService.UpdateCategoryById(category, id);
             if (success)
             {
                 return NoContent();
@@ -189,7 +189,7 @@ namespace TechnicalRadiation.WebApi.Controllers
 
             return NotFound();
         }
-
+        
         [Route("{id:int}")]
         [Authorization]
         [HttpDelete]

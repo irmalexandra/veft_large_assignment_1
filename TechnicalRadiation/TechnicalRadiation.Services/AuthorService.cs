@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TechnicalRadiation.Models;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
+using TechnicalRadiation.Models.Extensions;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 
@@ -11,21 +14,39 @@ namespace TechnicalRadiation.Services
     {
         private AuthorRepository _authorRepository;
         private NewsItemRepository _newsItemRepository;
-        
+
+        private void AddLinksToAuthorDto(HyperMediaModel a, int Id)
+        {
+            a.Links.AddReference("self" , new {href = $"/api/authors/{Id}"});
+            a.Links.AddReference("edit" , new {href = $"/api/authors/{Id}"});
+            a.Links.AddReference("delete" , new {href = $"/api/authors/{Id}"});
+            a.Links.AddReference("newsItems" , new {href = $"/api/authors/{Id}/newsItems"});
+            a.Links.AddListReference("newsItemsDetailed",
+                _newsItemRepository.GetNewsItemsByAuthorId(Id).Select(n => new {href = $"/api/{n.Id}"}));
+        }
+
         public AuthorService() // Constructor
         {
+            
             _authorRepository = new AuthorRepository();  // instance of class
             _newsItemRepository = new NewsItemRepository();
         }
         
         public IEnumerable<AuthorDto> GetAllAuthors()
         {
-            return _authorRepository.GetAllAuthors();
+            var authors = _authorRepository.GetAllAuthors().ToList();
+            authors.ForEach(author =>
+            {
+                AddLinksToAuthorDto(author, author.Id);
+            });
+            return authors;
         }
         
         public AuthorDetailDto GetAuthorById(int id)
         {
-            return _authorRepository.GetAuthorById(id);
+            var author = _authorRepository.GetAuthorById(id);
+            AddLinksToAuthorDto(author, author.Id);
+            return author;
         }
 
         public AuthorDto CreateAuthor(AuthorInputModel author)
