@@ -234,7 +234,7 @@ namespace TechnicalRadiation.WebApi.Controllers
 
         [Route("authors/{authorId:int}/newsItems/{newsItemId:int}", Name = "CreateNewsItemAuthor")]
         [Authorization]
-        [HttpPatch]
+        [HttpPost]
         // NewsItemAuthors connection table
         public IActionResult LinkAuthorToNewsItem(int authorId, int newsItemId)
         {

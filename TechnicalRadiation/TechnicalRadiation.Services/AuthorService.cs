@@ -37,7 +37,7 @@ namespace TechnicalRadiation.Services
         {
             if (_authorRepository.GetAuthorById(authorId) != null
                 && _newsItemRepository.GetNewsItemById(newsItemId) != null
-                && !_authorRepository.CheckNewsItemAuthorRelation(newsItemId))
+                && !_authorRepository.CheckNewsItemAuthorRelation(authorId, newsItemId))
             {
                 return _authorRepository.CreateNewsItemAuthor(authorId, newsItemId);
             }

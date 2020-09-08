@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -37,7 +38,7 @@ namespace TechnicalRadiation.Repositories
                 ShortDescription = newsitem.ShortDescription,
                 Title = newsitem.Title,
                 LongDescription = newsitem.LongDescription,
-                PublishedDate = newsitem.PublishedDate,
+                PublishDate = newsitem.PublishDate,
                 
             };
             
@@ -52,46 +53,25 @@ namespace TechnicalRadiation.Repositories
                 ImageSource = newsItem.ImgSource,
                 ShortDescription = newsItem.ShortDescription,
                 LongDescription = newsItem.LongDescription,
-                PublishedDate = newsItem.PublishDate,
+                PublishDate = newsItem.PublishDate,
                 
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
-            };
+            }; 
 
         }
-        private NewsItemDto CreateLinksForNewsItem(NewsItemDto newsItem)
-        {
-            var self = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            var edit = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            var delete = new Dictionary<string, string> {{"href", $"/api/{newsItem.Id}"}};
-            
-            var query = from authorids in DataProvider.NewsItemAuthors
-                where authorids.NewsItemId == newsItem.Id
-                select authorids;
-            
-            
-            
-            newsItem.Links.AddReference("self", self);
-            newsItem.Links.AddReference("edit", edit);
-            newsItem.Links.AddReference("delete", delete);
-            // newsItem.Links.AddListReference("authors", $"/api/{query.authorId}");
-            
-            return newsItem;
-        }
-
         public IEnumerable<NewsItemDto> GetAllNewsItems(int listStart, int listEnd) 
         {
             var query = 
                 from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
-                orderby news.PublishedDate
-                select CreateLinksForNewsItem(ToNewsItemDto(news));
+                orderby news.PublishDate
+                select ToNewsItemDto(news);
             return query;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)
         {
             var newsItem = DataProvider.NewsItems.FirstOrDefault(n => n.Id == id);
-            
             return ToNewsItemDetailDto(newsItem);
         }
 
@@ -125,7 +105,7 @@ namespace TechnicalRadiation.Repositories
             oldNewsItem.ImageSource = newsItem.ImgSource;
             oldNewsItem.LongDescription = newsItem.LongDescription;
             oldNewsItem.ShortDescription = newsItem.ShortDescription;
-            oldNewsItem.PublishedDate = newsItem.PublishDate;
+            oldNewsItem.PublishDate = newsItem.PublishDate;
             oldNewsItem.ModifiedBy = _adminName;
             oldNewsItem.ModifiedDate = DateTime.Now;
 
@@ -136,28 +116,6 @@ namespace TechnicalRadiation.Repositories
         {
             return DataProvider.NewsItems.Remove(DataProvider.NewsItems.FirstOrDefault(news => news.Id == id));
         }
+        
     }
 }
-/*
-public class OwnerRepository
-{
-    private IMapper _mapper;
-
-    public OwnerRepository(IMapper mapper)
-    {
-        _mapper = mapper;
-    }
-
-    public IEnumerable<OwnerDto> GetOwnersByRentalId(int rentalId)
-    {
-        return _mapper.Map<IEnumerable<OwnerDto>>(DataProvider.Owners.Where(o => o.RentalId == rentalId));
-    }
-
-    public OwnerDto GetOwnerByRentalId(int rentalId, int ownerId)
-    {
-        var owner = DataProvider.Owners.FirstOrDefault(o => o.Id == ownerId && o.RentalId == rentalId);
-        if (owner == null) { throw new Exception("Owner not found"); }
-        return _mapper.Map<OwnerDto>(owner);
-    }
-}
-*/

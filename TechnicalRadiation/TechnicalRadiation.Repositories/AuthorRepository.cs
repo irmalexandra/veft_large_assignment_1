@@ -58,11 +58,10 @@ namespace TechnicalRadiation.Repositories
             };
         }
 
-        public bool CheckNewsItemAuthorRelation(int newsItemId)
+        public bool CheckNewsItemAuthorRelation(int authorId, int newsItemId)
         {
-            
-            var exists = DataProvider.NewsItemAuthors.Exists(a => a.NewsItemId == newsItemId);
-            return exists;
+            var query = DataProvider.NewsItemAuthors.FirstOrDefault(a => a.AuthorId == authorId);
+            return query.NewsItemId == newsItemId;
         }
         
         public IEnumerable<AuthorDto> GetAllAuthors()
@@ -86,15 +85,12 @@ namespace TechnicalRadiation.Repositories
 
         }
 
-
-
         public NewsItemAuthors CreateNewsItemAuthor(int authorId, int newsItemId)
         {
             var entity = ToNewsItemAuthor(authorId, newsItemId);
             DataProvider.NewsItemAuthors.Add(entity);
             return entity;
         }
-
 
         public bool UpdateAuthorById(AuthorInputModel newAuthor, int id)
         {
@@ -115,6 +111,11 @@ namespace TechnicalRadiation.Repositories
         public bool DeleteAuthorById(int id)
         {
             return DataProvider.Authors.Remove(DataProvider.Authors.FirstOrDefault(news => news.Id == id));
+        }
+
+        public IEnumerable<NewsItemAuthors> GetAuthorsByNewsItemId(int newsItemId)
+        {
+            return DataProvider.NewsItemAuthors.Where(n => n.NewsItemId == newsItemId);
         }
     }
 }
