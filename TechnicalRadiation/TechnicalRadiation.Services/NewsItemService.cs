@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TechnicalRadiation.Models.Dtos;
-using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 using TechnicalRadiation.Models.Extensions;
 using System.Linq;
-
+using TechnicalRadiation.Models;
 
 
 namespace TechnicalRadiation.Services
@@ -15,13 +13,29 @@ namespace TechnicalRadiation.Services
     {
         private NewsItemRepository _newsItemRepository;
         private AuthorRepository _authorRepository;
+        private CategoryRepository _categoryRepository;
         
         public NewsItemService() // Constructor
         {
             _newsItemRepository = new NewsItemRepository();
             _authorRepository = new AuthorRepository();
+            _categoryRepository = new CategoryRepository();
             
         }
+
+        private void AddLinksToNewsItems(HyperMediaModel n, int id )
+        {
+   
+                n.Links.AddReference("self", new {href = $"/api/{id}"});
+                n.Links.AddReference("edit", new {href = $"/api/{id}"});
+                n.Links.AddReference("delete", new {href = $"/api/{id}"});
+                n.Links.AddListReference("authors",
+                    _authorRepository.GetAuthorsByNewsItemId(id).Select(a => 
+                        new {href = $"/api/authors/{id}"}));
+                n.Links.AddListReference("categories", _categoryRepository.GetCategoryByNewsItemId(id).Select(c => 
+                    new {href = $"/api/categories/{id}"}));
+            }
+
 
         public IEnumerable<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
         {
@@ -33,24 +47,26 @@ namespace TechnicalRadiation.Services
 
             news.ForEach(n =>
             {
-                n.Links.AddReference("self", new {href = $"api/{n.Id})"});
-                n.Links.AddReference("edit", new {href = $"api/{n.Id})"});
-                n.Links.AddReference("delete", new {href = $"api/{n.Id})"});
-                n.Links.AddListReference("owners",
-                    _authorRepository.GetAuthorsByNewsItemId(n.Id).Select(o => new {href = $"/api/authors/{n.Id}"}));
+                AddLinksToNewsItems(n, n.Id);
             });
-            
             return news ;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)
         {
-            return _newsItemRepository.GetNewsItemById(id);
+            var news = _newsItemRepository.GetNewsItemById(id);
+            AddLinksToNewsItems(news, news.Id);
+            return news;
         }
 
         public IEnumerable<NewsItemDto> GetNewsByAuthor(int id)
         {
-            return _newsItemRepository.GetNewsItemsByAuthorId(id);
+            var news = _newsItemRepository.GetNewsItemsByAuthorId(id).ToList();
+            news.ForEach(n =>
+            {
+                AddLinksToNewsItems(n, n.Id);
+            });
+            return news;
         }
 
         public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)

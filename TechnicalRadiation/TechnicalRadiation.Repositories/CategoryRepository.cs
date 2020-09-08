@@ -73,5 +73,10 @@ namespace TechnicalRadiation.Repositories
         {
             return DataProvider.Categories.Remove(DataProvider.Categories.FirstOrDefault(news => news.Id == id));
         }
+        
+        public IEnumerable<NewsItemCategories> GetCategoryByNewsItemId(int newsItemId)
+        {
+            return DataProvider.NewsItemCategories.Where(n => n.NewsItemId == newsItemId);
+        }
     }
 }
