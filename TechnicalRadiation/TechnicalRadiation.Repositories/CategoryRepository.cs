@@ -21,7 +21,19 @@ namespace TechnicalRadiation.Repositories
                 Slug = category.Slug
             };
         }
-        private Category toCategoryItem(CategoryInputModel category, int id)
+
+        private CategoryDetailDto ToCategoryDetailDto(Category category)
+        {
+            return new CategoryDetailDto()
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Slug = category.Slug,
+                NumberOfNewsItems = DataProvider.NewsItemCategories.Count(c => c.CategoryId == category.Id)
+            };
+        }
+        
+        private Category ToCategoryItem(CategoryInputModel category, int id)
         {
             return new Category
             {
@@ -38,17 +50,17 @@ namespace TechnicalRadiation.Repositories
             var category = DataProvider.Categories.Select(c => ToCategoryDto(c));
             return category;
         }
-        public CategoryDto GetCategoryById(int id)
+        public CategoryDetailDto GetCategoryById(int id)
         {
             var category = DataProvider.Categories.FirstOrDefault(n => n.Id == id);
             
-            return ToCategoryDto(category);
+            return ToCategoryDetailDto(category);
         }
         public CategoryDto CreateNewCategory(CategoryInputModel categoryitem)
         {
             var nextId = DataProvider.Categories.Count()+1;
 
-            var entity = toCategoryItem(categoryitem, nextId);
+            var entity = ToCategoryItem(categoryitem, nextId);
             DataProvider.Categories.Add(entity);
             return ToCategoryDto(entity);
 
