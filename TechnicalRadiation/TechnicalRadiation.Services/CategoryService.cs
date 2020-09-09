@@ -20,9 +20,9 @@ namespace TechnicalRadiation.Services
 
         private void AddLinksToCategory(HyperMediaModel c, int id)
         {
-            c.Links.AddReference("self", new {href = $"/api/{id})"});
-            c.Links.AddReference("edit", new {href = $"/api/{id})"});
-            c.Links.AddReference("delete", new {href = $"/api/{id})"});
+            c.Links.AddReference("self", new {href = $"/api/categories/{id})"});
+            c.Links.AddReference("edit", new {href = $"/api/categories/{id})"});
+            c.Links.AddReference("delete", new {href = $"/api/categories/{id})"});
         }
         
         public IEnumerable<CategoryDto> GetAllCategories()

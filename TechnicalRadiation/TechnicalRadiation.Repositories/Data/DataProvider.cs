@@ -82,11 +82,61 @@ namespace TechnicalRadiation.Repositories.Data
                 CreatedDate = DateTime.Today,
                 ModifiedDate = DateTime.Now
             }
+            ,
+            new Category
+            {
+                Id = 4,
+                Name = "Cyborgszzzz",
+                Slug = "cyborgs",
+                ModifiedBy = _adminName,
+                CreatedDate = DateTime.Today,
+                ModifiedDate = DateTime.Now
+            }
         };
 
         public static List<NewsItem> NewsItems = new List<NewsItem>
         {
             new NewsItem
+                
+            {
+                Id = 6,
+                Title = "When the sun hit the moon",
+                ImageSource = "4chan.net",
+                ShortDescription = "Shit was wild",
+                LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            },
+            new NewsItem
+                
+            {
+                Id = 5,
+                Title = "When the sun hit the moon",
+                ImageSource = "4chan.net",
+                ShortDescription = "Shit was wild",
+                LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            },
+            new NewsItem
+                
+            {
+                Id = 4,
+                Title = "When the sun hit the moon",
+                ImageSource = "4chan.net",
+                ShortDescription = "Shit was wild",
+                LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
+                PublishDate = DateTime.Now,
+                ModifiedBy = _adminName,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            },
+            new NewsItem
+                
             {
                 Id = 1,
                 Title = "When the sun hit the moon",
@@ -141,6 +191,36 @@ namespace TechnicalRadiation.Repositories.Data
                 AuthorId = 3,
                 NewsItemId = 3
             }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 2,
+                NewsItemId = 4
+            }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 3,
+                NewsItemId = 5
+            }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 1,
+                NewsItemId = 6
+            }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 3,
+                NewsItemId = 6
+            }
+            ,
+            new NewsItemAuthors
+            {
+                AuthorId = 2,
+                NewsItemId = 6
+            }
         };
 
         public static List<NewsItemCategories> NewsItemCategories = new List<NewsItemCategories>
@@ -153,6 +233,18 @@ namespace TechnicalRadiation.Repositories.Data
             new NewsItemCategories()
             {
                 CategoryId = 3,
+                NewsItemId = 2
+            }
+            ,
+            new NewsItemCategories()
+            {
+                CategoryId = 2,
+                NewsItemId = 2
+            }
+            ,
+            new NewsItemCategories()
+            {
+                CategoryId = 4,
                 NewsItemId = 2
             }
         };

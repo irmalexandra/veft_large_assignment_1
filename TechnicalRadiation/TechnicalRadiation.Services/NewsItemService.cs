@@ -31,9 +31,9 @@ namespace TechnicalRadiation.Services
                 n.Links.AddReference("delete", new {href = $"/api/{id}"});
                 n.Links.AddListReference("authors",
                     _authorRepository.GetAuthorsByNewsItemId(id).Select(a => 
-                        new {href = $"/api/authors/{id}"}));
+                        new {href = $"/api/authors/{a.AuthorId}"}));
                 n.Links.AddListReference("categories", _categoryRepository.GetCategoryByNewsItemId(id).Select(c => 
-                    new {href = $"/api/categories/{id}"}));
+                    new {href = $"/api/categories/{c.CategoryId}"}));
             }
 
 
