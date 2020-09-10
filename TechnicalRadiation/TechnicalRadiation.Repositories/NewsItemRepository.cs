@@ -16,6 +16,8 @@ namespace TechnicalRadiation.Repositories
 {
     public class NewsItemRepository
     {
+        
+        
         private static readonly string _adminName = "TechnicalRadiationAdmin";
         private NewsItemDto ToNewsItemDto(NewsItem newsitem)
         {
@@ -60,13 +62,11 @@ namespace TechnicalRadiation.Repositories
             }; 
 
         }
-        public IEnumerable<NewsItemDto> GetAllNewsItems(int listStart, int listEnd) 
+        public Envelope<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber) 
         {
-            var query = 
-                from news in DataProvider.NewsItems.Skip(listStart).Take(listEnd)
-                orderby news.PublishDate
-                select ToNewsItemDto(news);
-            return query;
+            var news = DataProvider.NewsItems.Select(n => ToNewsItemDto(n));
+            var collection = new Envelope<NewsItemDto>(pageNumber, pageSize, news);
+            return collection;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)

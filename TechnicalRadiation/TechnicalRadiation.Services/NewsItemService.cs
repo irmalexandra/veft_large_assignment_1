@@ -37,18 +37,11 @@ namespace TechnicalRadiation.Services
             }
 
 
-        public IEnumerable<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
+        public Envelope<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
         {
-            var listStart = 0;
-            if (pageNumber > 1) {listStart = pageSize * pageNumber - 1;}
-            var listEnd = pageSize + listStart;
+            var news = _newsItemRepository.GetAllNewsItems(pageSize, pageNumber);
 
-            var news = _newsItemRepository.GetAllNewsItems(listStart, listEnd).ToList();
-
-            news.ForEach(n =>
-            {
-                AddLinksToNewsItems(n, n.Id);
-            });
+            foreach (var newsItem in news.Items) {AddLinksToNewsItems(newsItem, newsItem.Id);}
             return news ;
         }
         
