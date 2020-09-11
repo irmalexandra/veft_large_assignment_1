@@ -239,5 +239,18 @@ namespace TechnicalRadiation.WebApi.Controllers
 
             return BadRequest();
         }
+        [Route("categories/{categoryId:int}/newsItems/{newsItemId:int}", Name = "CreateNewsItemCategory")]
+        [Authorization]
+        [HttpPost]
+        // NewsItemAuthors connection table
+        public IActionResult LinkCategoryToNewsItem(int categoryId, int newsItemId)
+        {
+            var newsItemAuthor = _categoryService.CreateNewsItemCategory(categoryId, newsItemId);
+            if (newsItemAuthor != null)
+            {
+                return CreatedAtRoute("CreateNewsItemCategory", null);
+            }
+            return BadRequest();
+        }
     }
 }

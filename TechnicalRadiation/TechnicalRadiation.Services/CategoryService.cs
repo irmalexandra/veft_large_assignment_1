@@ -2,6 +2,7 @@
 using System.Linq;
 using TechnicalRadiation.Models;
 using TechnicalRadiation.Models.Dtos;
+using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.Extensions;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
@@ -11,17 +12,19 @@ namespace TechnicalRadiation.Services
     public class CategoryService
     {
         private CategoryRepository _categoryRepository;
+        private NewsItemRepository _newsItemRepository;
         
         public CategoryService() // Constructor
         {
             _categoryRepository = new CategoryRepository();  // instance of class
+            _newsItemRepository = new NewsItemRepository();
         }
 
-        private void AddLinksToCategory(HyperMediaModel c, int id)
+        private void AddLinksToCategory(HyperMediaModel category, int id)
         {
-            c.Links.AddReference("self", new {href = $"/api/categories/{id})"});
-            c.Links.AddReference("edit", new {href = $"/api/categories/{id})"});
-            c.Links.AddReference("delete", new {href = $"/api/categories/{id})"});
+            category.Links.AddReference("self", new {href = $"/api/categories/{id})"});
+            category.Links.AddReference("edit", new {href = $"/api/categories/{id})"});
+            category.Links.AddReference("delete", new {href = $"/api/categories/{id})"});
         }
         
         public IEnumerable<CategoryDto> GetAllCategories()
@@ -55,6 +58,17 @@ namespace TechnicalRadiation.Services
         public bool DeleteCategoryById(in int id)
         {
             return _categoryRepository.DeleteAuthorById(id);
+        }
+
+        public NewsItemCategories CreateNewsItemCategory(int categoryId,int newsItemId)
+        {
+            if (_categoryRepository.GetCategoryById(categoryId) != null
+                && _newsItemRepository.GetNewsItemById(newsItemId) != null
+                && !_categoryRepository.CheckNewsItemCategoryRelation(categoryId, newsItemId))
+            {
+                return _categoryRepository.CreateNewsItemCategory(categoryId, newsItemId);
+            }
+            return null;
         }
     }
 }

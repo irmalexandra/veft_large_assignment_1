@@ -20,8 +20,6 @@ namespace TechnicalRadiation.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
-         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

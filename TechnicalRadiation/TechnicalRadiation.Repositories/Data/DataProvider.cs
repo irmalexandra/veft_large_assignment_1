@@ -247,6 +247,12 @@ namespace TechnicalRadiation.Repositories.Data
                 CategoryId = 4,
                 NewsItemId = 2
             }
+            ,
+            new NewsItemCategories()
+            {
+                CategoryId = 4,
+                NewsItemId = 1
+            }
         };
 
     }

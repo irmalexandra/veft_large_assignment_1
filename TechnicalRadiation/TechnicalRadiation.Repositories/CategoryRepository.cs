@@ -28,7 +28,8 @@ namespace TechnicalRadiation.Repositories
                 Id = category.Id,
                 Name = category.Name,
                 Slug = category.Slug,
-                NumberOfNewsItems = DataProvider.NewsItemCategories.Count(c => c.CategoryId == category.Id)
+                NumberOfNewsItems = DataProvider.NewsItemCategories.Count(c =>
+                    c.CategoryId == category.Id)
             };
         }
         
@@ -43,6 +44,16 @@ namespace TechnicalRadiation.Repositories
                 ModifiedDate = DateTime.Now
             };
 
+        }
+        
+        private NewsItemCategories ToNewsItemCategory(int categoryId, int newsItemId)
+        {
+            return new NewsItemCategories
+            {
+                CategoryId = categoryId,
+                NewsItemId = newsItemId    
+
+            };
         }
         public IEnumerable<CategoryDto> GetAllCategories()
         {
@@ -88,6 +99,21 @@ namespace TechnicalRadiation.Repositories
         public IEnumerable<NewsItemCategories> GetCategoryByNewsItemId(int newsItemId)
         {
             return DataProvider.NewsItemCategories.Where(n => n.NewsItemId == newsItemId);
+        }
+
+
+        public bool CheckNewsItemCategoryRelation(int categoryId, int newsItemId)
+        {
+            var query = DataProvider.NewsItemCategories.FirstOrDefault(a =>
+                a.CategoryId == categoryId);
+            return query.NewsItemId == newsItemId;
+        }
+        
+        public NewsItemCategories CreateNewsItemCategory(int categoryId, int newsItemId)
+        {
+            var entity = ToNewsItemCategory(categoryId, newsItemId);
+            DataProvider.NewsItemCategories.Add(entity);
+            return entity;
         }
     }
 }

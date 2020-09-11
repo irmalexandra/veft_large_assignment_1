@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 
-namespace TechnicalRadiation.WebApi.ExceptionMiddlewareExtensions
+namespace TechnicalRadiation.WebApi.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
@@ -17,19 +17,17 @@ namespace TechnicalRadiation.WebApi.ExceptionMiddlewareExtensions
                 {
                     var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
                     var exception = exceptionHandlerFeature.Error;
-                    var statusCode = (int) HttpStatusCode.InternalServerError;
 
                     //var logService = app.ApplicationServices.GetService(typeof(IlogService)) as IlogService;
                     //logService.LogToFile();
 
-                    if (exception is ResourceNotFoundException)
+                    var statusCode = exception switch
                     {
-                        statusCode = (int)HttpStatusCode.NotFound;
-                    }
-                    else if (exception is ModelFormatException)
-                    {
-                        statusCode = (int)HttpStatusCode.PreconditionFailed;
-                    }
+                        ResourceNotFoundException _ => (int) HttpStatusCode.NotFound,
+                        ModelFormatException _ => (int) HttpStatusCode.PreconditionFailed,
+                        ArgumentOutOfRangeException _ => (int) HttpStatusCode.BadRequest,
+                        _ => (int) HttpStatusCode.InternalServerError
+                    };
 
                     context.Response.ContentType = "application/json";
                     context.Response.StatusCode = statusCode;
