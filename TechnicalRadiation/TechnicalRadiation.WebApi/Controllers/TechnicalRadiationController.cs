@@ -15,11 +15,13 @@ namespace TechnicalRadiation.WebApi.Controllers
         private AuthorService _authorService;
 
 
+
         public TechnicalRadiationController() // Constructor
         {
             _categoryService = new CategoryService();
             _newsItemService = new NewsItemService();
             _authorService = new AuthorService();
+
         }
 
         [Route("")]
