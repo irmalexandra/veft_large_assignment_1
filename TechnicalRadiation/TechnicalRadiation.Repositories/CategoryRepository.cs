@@ -4,37 +4,48 @@ using System.Linq;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories.Data;
+using TechnicalRadiation.Models.Repositories.Data;
 
-namespace TechnicalRadiation.Repositories
+namespace TechnicalRadiation.Models.Repositories
 {
     public class CategoryRepository
     {
         private static readonly string _adminName = "TechnicalRadiationAdmin";
         private CategoryDto ToCategoryDto (Category category)
         {
-            return new CategoryDto
+            if (category != null)
             {
-                Id = category.Id,
-                Name = category.Name,
-                Slug = category.Slug
-            };
+                return new CategoryDto
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    Slug = category.Slug
+                };
+            }
+            return null;
         }
 
         private CategoryDetailDto ToCategoryDetailDto(Category category)
         {
-            return new CategoryDetailDto()
+            if (category != null)
             {
-                Id = category.Id,
-                Name = category.Name,
-                Slug = category.Slug,
-                NumberOfNewsItems = DataProvider.NewsItemCategories.Count(c =>
-                    c.CategoryId == category.Id)
-            };
+                return new CategoryDetailDto()
+                {
+                    Id = category.Id,
+                    Name = category.Name,
+                    Slug = category.Slug,
+                    NumberOfNewsItems = DataProvider.NewsItemCategories.Count(c =>
+                        c.CategoryId == category.Id)
+                };
+            }
+
+            return null;
+
         }
         
         private Category ToCategoryItem(CategoryInputModel category, int id)
         {
+ 
             return new Category
             {
                 Id = id,
@@ -63,8 +74,8 @@ namespace TechnicalRadiation.Repositories
         public CategoryDetailDto GetCategoryById(int id)
         {
             var category = DataProvider.Categories.FirstOrDefault(n => n.Id == id);
-            
             return ToCategoryDetailDto(category);
+            
         }
         public CategoryDto CreateNewCategory(CategoryInputModel categoryitem)
         {
@@ -104,9 +115,9 @@ namespace TechnicalRadiation.Repositories
 
         public bool CheckNewsItemCategoryRelation(int categoryId, int newsItemId)
         {
-            var query = DataProvider.NewsItemCategories.FirstOrDefault(a =>
-                a.CategoryId == categoryId);
-            return query.NewsItemId == newsItemId;
+            return (from relations in DataProvider.NewsItemCategories
+                where relations.NewsItemId == newsItemId && relations.CategoryId == categoryId
+                select relations).FirstOrDefault() != null;
         }
         
         public NewsItemCategories CreateNewsItemCategory(int categoryId, int newsItemId)

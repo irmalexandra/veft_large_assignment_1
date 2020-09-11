@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
-using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories.Data;
 using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.InputModels;
+using TechnicalRadiation.Models.Repositories.Data;
 
-namespace TechnicalRadiation.Repositories
+namespace TechnicalRadiation.Models.Repositories
 {
     public class NewsItemRepository
     {
@@ -16,14 +17,19 @@ namespace TechnicalRadiation.Repositories
         private static readonly string _adminName = "TechnicalRadiationAdmin";
         private NewsItemDto ToNewsItemDto(NewsItem newsitem)
         {
-            return new NewsItemDto
+            if (newsitem != null)
             {
-                Id = newsitem.Id,
-                ImageSource = newsitem.ImgSource,
-                ShortDescription = newsitem.ShortDescription,
-                Title = newsitem.Title,
+                return new NewsItemDto
+                {
+                    Id = newsitem.Id,
+                    ImageSource = newsitem.ImgSource,
+                    ShortDescription = newsitem.ShortDescription,
+                    Title = newsitem.Title,
+                    
                 
-            };
+                };
+            }
+            return null;
         }
         
         private NewsItemDetailDto ToNewsItemDetailDto(NewsItem newsitem)
@@ -61,11 +67,11 @@ namespace TechnicalRadiation.Repositories
             }; 
 
         }
-        public Envelope<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber) 
+        public IEnumerable<NewsItemDto> GetAllNewsItems() 
         {
-            var news = DataProvider.NewsItems.Select(n => ToNewsItemDto(n));
-            var collection = new Envelope<NewsItemDto>(pageNumber, pageSize, news);
-            return collection;
+            var news = DataProvider.NewsItems.OrderByDescending(n =>
+                n.PublishDate).Select(n => ToNewsItemDto(n));
+            return news;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)

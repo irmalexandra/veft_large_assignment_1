@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-using TechnicalRadiation.Models.Dtos;
-using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories;
-using TechnicalRadiation.Models.Extensions;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Exceptions;
+using TechnicalRadiation.Models.HyperMedia;
+using TechnicalRadiation.Models.InputModels;
+using TechnicalRadiation.Models.Repositories;
+using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
 
-namespace TechnicalRadiation.Services
+namespace TechnicalRadiation.Models.Services
 {
     public class NewsItemService
     {
@@ -38,12 +40,29 @@ namespace TechnicalRadiation.Services
             }
 
 
-        public Envelope<NewsItemDto> GetAllNewsItems(int pageSize, int pageNumber)
+        public IEnumerable GetAllNewsItems(int pageSize, int pageNumber)
         {
-            var news = _newsItemRepository.GetAllNewsItems(pageSize, pageNumber);
+             
+            var news = _newsItemRepository.GetAllNewsItems();
+            var newsSize = news.Count();
+            if ((newsSize / pageSize) < pageNumber)
+            {
+                throw new ArgumentOutOfRangeException("Invalid page number.");
+            } 
+            var newsEnvelope = new Envelope<NewsItemDto>(pageNumber, pageSize, news);
+            if (newsEnvelope == null)
+            {
+                throw new ResourceNotFoundException("No news items were found.");
+            }
+            
 
-            foreach (var newsItem in news.Items) {AddLinksToNewsItems(newsItem, newsItem.Id);}
-            return news ;
+            List<NewsItemDto> returnList = new List<NewsItemDto>();
+            foreach (var newsItem in newsEnvelope.Items.ToList())
+            {
+                AddLinksToNewsItems(newsItem, newsItem.Id);
+                returnList.Add(newsItem);
+            }
+            return returnList;
         }
         
         public NewsItemDetailDto GetNewsItemById(int id)

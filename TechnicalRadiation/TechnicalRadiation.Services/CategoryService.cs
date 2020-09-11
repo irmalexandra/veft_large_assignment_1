@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TechnicalRadiation.Models;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
-using TechnicalRadiation.Models.Extensions;
+using TechnicalRadiation.Models.Exceptions;
+using TechnicalRadiation.Models.HyperMedia;
 using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories;
+using TechnicalRadiation.Models.Repositories;
 
-namespace TechnicalRadiation.Services
+namespace TechnicalRadiation.Models.Services
 {
     public class CategoryService
     {
@@ -30,6 +30,10 @@ namespace TechnicalRadiation.Services
         public IEnumerable<CategoryDto> GetAllCategories()
         {
             var categories = _categoryRepository.GetAllCategories().ToList();
+            if (categories == null)
+            {
+                throw new ResourceNotFoundException("No categories were found.");
+            }
             categories.ForEach(c =>
             {
                 AddLinksToCategory(c, c.Id);
@@ -41,6 +45,10 @@ namespace TechnicalRadiation.Services
         {
             
             var category = _categoryRepository.GetCategoryById(id);
+            if (category == null)
+            {
+                throw new ResourceNotFoundException($"Category with id {id} was not found.");
+            }
             AddLinksToCategory(category, category.Id);
             return category;
         }
@@ -62,13 +70,22 @@ namespace TechnicalRadiation.Services
 
         public NewsItemCategories CreateNewsItemCategory(int categoryId,int newsItemId)
         {
-            if (_categoryRepository.GetCategoryById(categoryId) != null
-                && _newsItemRepository.GetNewsItemById(newsItemId) != null
-                && !_categoryRepository.CheckNewsItemCategoryRelation(categoryId, newsItemId))
+            if (_categoryRepository.GetCategoryById(categoryId) != null)
             {
-                return _categoryRepository.CreateNewsItemCategory(categoryId, newsItemId);
+                if (_newsItemRepository.GetNewsItemById(newsItemId) != null)
+                {
+                    if(!_categoryRepository.CheckNewsItemCategoryRelation(categoryId, newsItemId))
+                    {
+                       
+                        return _categoryRepository.CreateNewsItemCategory(categoryId, newsItemId);
+                       
+                    }
+                    throw new ResourceAlreadyExistsException();
+                }
+                throw new ResourceNotFoundException($"News item with id {newsItemId} was not found.");
             }
-            return null;
+          throw new ResourceNotFoundException($"Category with id {categoryId} was not found.");
+            
         }
     }
 }

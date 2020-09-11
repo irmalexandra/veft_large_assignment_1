@@ -4,31 +4,42 @@ using System.Linq;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories.Data;
+using TechnicalRadiation.Models.Repositories.Data;
 
-namespace TechnicalRadiation.Repositories
+namespace TechnicalRadiation.Models.Repositories
 {
     public class AuthorRepository
     {
         private static readonly string _adminName = "TechnicalRadiationAdmin";
         private AuthorDto ToAuthorDto (Author author)
         {
-            return new AuthorDto()
+            if (author != null)
             {
-                Id = author.Id,
-                Name = author.Name,
-            };
+                return new AuthorDto()
+                {
+                    Id = author.Id,
+                    Name = author.Name,
+                };
+            }
+
+            return null;
         }
 
         private AuthorDetailDto ToAuthorDetailDto(Author author)
         {
-            return new AuthorDetailDto()
+            if (author != null)
             {
-                Id = author.Id,
-                Name = author.Name,
-                Bio = author.Bio,
-                ProfileImageSource = author.ProfileImgSource
-            };
+                return new AuthorDetailDto()
+                {
+                    Id = author.Id,
+                    Name = author.Name,
+                    Bio = author.Bio,
+                    ProfileImageSource = author.ProfileImgSource
+                };
+            }
+
+            return null;
+
         }
         
         private Author ToAuthor(AuthorInputModel author, int id)
@@ -58,8 +69,9 @@ namespace TechnicalRadiation.Repositories
 
         public bool CheckNewsItemAuthorRelation(int authorId, int newsItemId)
         {
-            var query = DataProvider.NewsItemAuthors.FirstOrDefault(a => a.AuthorId == authorId);
-            return query.NewsItemId == newsItemId;
+            return (from relations in DataProvider.NewsItemAuthors
+                where relations.NewsItemId == newsItemId && relations.AuthorId == authorId
+                select relations).FirstOrDefault() != null;
         }
         
         public IEnumerable<AuthorDto> GetAllAuthors()

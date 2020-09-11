@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace TechnicalRadiation.WebApi.Attributes
+namespace TechnicalRadiation.Models.WebApi.Attributes
 {
     public class AuthorizationAttribute : Attribute, IAuthorizationFilter
     {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace TechnicalRadiation.WebApi.Extensions
+namespace TechnicalRadiation.Models.WebApi.Extensions
 {
     public static class ModelStateExtensions
     {

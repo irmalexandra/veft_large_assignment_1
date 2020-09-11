@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using TechnicalRadiation.Models;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
-using TechnicalRadiation.Models.Extensions;
+using TechnicalRadiation.Models.Exceptions;
+using TechnicalRadiation.Models.HyperMedia;
 using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Repositories;
+using TechnicalRadiation.Models.Repositories;
 
-namespace TechnicalRadiation.Services
+namespace TechnicalRadiation.Models.Services
 {
     public class AuthorService
     {
@@ -38,12 +38,20 @@ namespace TechnicalRadiation.Services
             {
                 AddLinksToAuthorDto(author, author.Id);
             });
+            if (authors == null)
+            {
+                throw new ResourceNotFoundException("No authors were found.");
+            }
             return authors;
         }
         
         public AuthorDetailDto GetAuthorById(int id)
         {
             var author = _authorRepository.GetAuthorById(id);
+            if (author == null)
+            {
+                throw new ResourceNotFoundException($"Author with id {id} does not exist.");
+            }
             AddLinksToAuthorDto(author, author.Id);
             return author;
         }
@@ -55,13 +63,22 @@ namespace TechnicalRadiation.Services
 
         public NewsItemAuthors CreateNewsItemAuthor(int authorId, int newsItemId)
         {
-            if (_authorRepository.GetAuthorById(authorId) != null
-                && _newsItemRepository.GetNewsItemById(newsItemId) != null
-                && !_authorRepository.CheckNewsItemAuthorRelation(authorId, newsItemId))
+            if (_authorRepository.GetAuthorById(authorId) != null)
             {
-                return _authorRepository.CreateNewsItemAuthor(authorId, newsItemId);
+                if (_newsItemRepository.GetNewsItemById(newsItemId) != null)
+                {
+                    if(!_authorRepository.CheckNewsItemAuthorRelation(authorId, newsItemId))
+                    {
+                       
+                        return _authorRepository.CreateNewsItemAuthor(authorId, newsItemId);
+                       
+                    }
+                    throw new ResourceAlreadyExistsException();
+                }
+                throw new ResourceNotFoundException($"News item with id {newsItemId} was not found.");
             }
-            return null;
+            throw new ResourceNotFoundException($"Author with id {authorId} was not found.");
+
         }
 
         public bool UpdateAuthorById(AuthorInputModel author, int id)

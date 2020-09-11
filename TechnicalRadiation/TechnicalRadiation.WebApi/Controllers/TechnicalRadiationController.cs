@@ -1,11 +1,12 @@
-﻿using TechnicalRadiation.Models.Exceptions;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using TechnicalRadiation.Models.Exceptions;
+using TechnicalRadiation.Models.WebApi.Extensions;
 using TechnicalRadiation.Models.InputModels;
-using TechnicalRadiation.Services;
-using TechnicalRadiation.WebApi.Attributes;
-using TechnicalRadiation.WebApi.Extensions;
+using TechnicalRadiation.Models.Services;
+using TechnicalRadiation.Models.WebApi.Attributes;
 
-namespace TechnicalRadiation.WebApi.Controllers
+namespace TechnicalRadiation.Models.WebApi.Controllers
 {
     [Route("api/")]
     public class TechnicalRadiationController : Controller
@@ -25,6 +26,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         }
 
         [Route("")]
+        
         [HttpGet]
         public IActionResult GetAllNews()
         {
@@ -94,7 +96,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new ModelFormatException("The News item model was badly constructed");
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
@@ -123,7 +125,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new ModelFormatException("The author was badly constructed");
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var authorDto = _authorService.CreateAuthor(author);
@@ -137,9 +139,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var otherThing = ModelState;
-                var thing = HttpContext.Request.Headers["model"];
-                return BadRequest();
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var success = _newsItemService.UpdateNewsItemById(newsitem, id);
@@ -158,7 +158,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var success = _authorService.UpdateAuthorById(author, id);
@@ -177,7 +177,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var success = _categoryService.UpdateCategoryById(category, id);

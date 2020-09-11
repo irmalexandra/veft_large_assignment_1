@@ -1,13 +1,13 @@
 using System;
 using System.Net;
-using TechnicalRadiation.Models.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
-using TechnicalRadiation.Models;
 using TechnicalRadiation.Models.Exceptions;
+using TechnicalRadiation.Models;
+using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
-namespace TechnicalRadiation.WebApi.Extensions
+namespace TechnicalRadiation.Models.WebApi.Extensions
 {
     public static class ExceptionMiddlewareExtensions
     {
@@ -25,6 +25,7 @@ namespace TechnicalRadiation.WebApi.Extensions
                         ResourceNotFoundException _ => (int) HttpStatusCode.NotFound,
                         ModelFormatException _ => (int) HttpStatusCode.PreconditionFailed,
                         ArgumentOutOfRangeException _ => (int) HttpStatusCode.BadRequest,
+                        ResourceAlreadyExistsException _ => (int) HttpStatusCode.Conflict,
                         _ => (int) HttpStatusCode.InternalServerError
                     };
 

@@ -26,13 +26,15 @@
         <e p="Envelope.cs" t="Include" />
         <e p="ExceptionModel.cs" t="Include" />
         <e p="Exceptions" t="Include">
+          <e p="ArgumentOutOfRangeException.cs" t="Include" />
           <e p="ModelFormatException.cs" t="Include" />
+          <e p="ResourceAlreadyExistsException.cs" t="Include" />
           <e p="ResourceNotFoundException.cs" t="Include" />
         </e>
-        <e p="Extensions" t="Include">
+        <e p="HyperMedia" t="Include">
           <e p="HyperMediaExtensions.cs" t="Include" />
+          <e p="HyperMediaModel.cs" t="Include" />
         </e>
-        <e p="HyperMediaModel.cs" t="Include" />
         <e p="InputModels" t="Include">
           <e p="AuthorInputModel.cs" t="Include" />
           <e p="CategoryInputModel.cs" t="Include" />
