@@ -27,7 +27,7 @@ namespace TechnicalRadiation.Repositories
                 Id = author.Id,
                 Name = author.Name,
                 Bio = author.Bio,
-                ProfileImageSource = author.ProfileImageSource
+                ProfileImageSource = author.ProfileImgSource
             };
         }
         
@@ -38,7 +38,7 @@ namespace TechnicalRadiation.Repositories
                 Id = id,
                 Name = author.Name,
                 Bio = author.Bio,
-                ProfileImageSource = author.ProfileImgSource,
+                ProfileImgSource = author.ProfileImgSource,
                 
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now
@@ -100,7 +100,7 @@ namespace TechnicalRadiation.Repositories
 
             oldAuthor.Name = newAuthor.Name;
             oldAuthor.Bio = newAuthor.Bio;
-            oldAuthor.ProfileImageSource = newAuthor.ProfileImgSource;
+            oldAuthor.ProfileImgSource = newAuthor.ProfileImgSource;
             oldAuthor.ModifiedBy = _adminName;
             oldAuthor.ModifiedDate = DateTime.Now;
             return true;

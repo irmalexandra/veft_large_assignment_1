@@ -1,8 +1,7 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
-namespace Exterminator.Models.Exceptions
+
+namespace TechnicalRadiation.Models.Exceptions
 {
     public class ModelFormatException : Exception
     {

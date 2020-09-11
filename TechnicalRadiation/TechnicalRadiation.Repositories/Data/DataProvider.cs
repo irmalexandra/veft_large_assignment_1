@@ -14,7 +14,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 1,
                 Name = "Rikkharður",
-                ProfileImageSource = "www.google.com",
+                ProfileImgSource = "www.google.com",
                 Bio = "I am a man",
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Today,
@@ -24,7 +24,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 2,
                 Name = "Emmilinn",
-                ProfileImageSource = "google.com",
+                ProfileImgSource = "google.com",
                 Bio = "I am a man also",
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Today,
@@ -34,7 +34,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 3,
                 Name = "Lok",
-                ProfileImageSource = "google.com",
+                ProfileImgSource = "google.com",
                 Bio = "I am a man also yes",
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Today,
@@ -44,7 +44,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 4,
                 Name = "i",
-                ProfileImageSource = "google.com",
+                ProfileImgSource = "google.com",
                 Bio = "I am a man also",
                 ModifiedBy = _adminName,
                 CreatedDate = DateTime.Today,
@@ -101,7 +101,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 6,
                 Title = "When the sun hit the moon",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.Now,
@@ -114,7 +114,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 5,
                 Title = "When the sun hit the moon",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.Now,
@@ -127,7 +127,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 4,
                 Title = "When the sun hit the moon",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.Now,
@@ -140,7 +140,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 1,
                 Title = "When the sun hit the moon",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.Now,
@@ -152,7 +152,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 2,
                 Title = "When the moon hit the sun",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Shit was wild",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.Now,
@@ -164,7 +164,7 @@ namespace TechnicalRadiation.Repositories.Data
             {
                 Id = 3,
                 Title = "Java vs C++",
-                ImageSource = "4chan.net",
+                ImgSource = "4chan.net",
                 ShortDescription = "Practically 0 difference to be honest",
                 LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fringilla justo sed laoreet gravida.",
                 PublishDate = DateTime.MinValue,

@@ -1,6 +1,6 @@
 using System;
 
-namespace Exterminator.Models.Exceptions
+namespace TechnicalRadiation.Models.Exceptions
 {
     public class ResourceNotFoundException : Exception
     {

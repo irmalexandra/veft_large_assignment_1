@@ -19,7 +19,7 @@ namespace TechnicalRadiation.Repositories
             return new NewsItemDto
             {
                 Id = newsitem.Id,
-                ImageSource = newsitem.ImageSource,
+                ImageSource = newsitem.ImgSource,
                 ShortDescription = newsitem.ShortDescription,
                 Title = newsitem.Title,
                 
@@ -33,7 +33,7 @@ namespace TechnicalRadiation.Repositories
                 return new NewsItemDetailDto
                 {
                     Id = newsitem.Id,
-                    ImageSource = newsitem.ImageSource,
+                    ImageSource = newsitem.ImgSource,
                     ShortDescription = newsitem.ShortDescription,
                     Title = newsitem.Title,
                     LongDescription = newsitem.LongDescription,
@@ -51,7 +51,7 @@ namespace TechnicalRadiation.Repositories
             {
                 Id = id,
                 Title = newsItem.Title,
-                ImageSource = newsItem.ImgSource,
+                ImgSource = newsItem.ImgSource,
                 ShortDescription = newsItem.ShortDescription,
                 LongDescription = newsItem.LongDescription,
                 PublishDate = newsItem.PublishDate,
@@ -101,7 +101,7 @@ namespace TechnicalRadiation.Repositories
             }
 
             oldNewsItem.Title = newsItem.Title;
-            oldNewsItem.ImageSource = newsItem.ImgSource;
+            oldNewsItem.ImgSource = newsItem.ImgSource;
             oldNewsItem.LongDescription = newsItem.LongDescription;
             oldNewsItem.ShortDescription = newsItem.ShortDescription;
             oldNewsItem.PublishDate = newsItem.PublishDate;

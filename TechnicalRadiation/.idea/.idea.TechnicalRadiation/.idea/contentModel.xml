@@ -24,8 +24,8 @@
           <e p="NewsItemCategories.cs" t="Include" />
         </e>
         <e p="Envelope.cs" t="Include" />
+        <e p="ExceptionModel.cs" t="Include" />
         <e p="Exceptions" t="Include">
-          <e p="ExceptionModel.cs" t="Include" />
           <e p="ModelFormatException.cs" t="Include" />
           <e p="ResourceNotFoundException.cs" t="Include" />
         </e>
@@ -88,9 +88,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="TechnicalRadiationController.cs" t="Include" />
-        </e>
-        <e p="ExceptionHandlerExtensions" t="Include">
-          <e p="ExceptionHandlerExtensions.cs" t="Include" />
         </e>
         <e p="Extensions" t="Include">
           <e p="ExceptionMiddleWareExtension.cs" t="Include" />

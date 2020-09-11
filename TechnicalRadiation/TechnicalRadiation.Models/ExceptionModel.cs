@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Exterminator.Models.Exceptions
+namespace TechnicalRadiation.Models
 {
     public class ExceptionModel
     {

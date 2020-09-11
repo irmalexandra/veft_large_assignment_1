@@ -4,8 +4,8 @@ using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 using TechnicalRadiation.Models.Extensions;
 using System.Linq;
-using Exterminator.Models.Exceptions;
 using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.Exceptions;
 
 
 namespace TechnicalRadiation.Services
@@ -51,7 +51,7 @@ namespace TechnicalRadiation.Services
             var news = _newsItemRepository.GetNewsItemById(id);
             if (news == null)
             {
-                throw new ResourceNotFoundException($"News item with id {id} was not found, my guy. ");
+                throw new ResourceNotFoundException($"News item with id {id} was not found. ");
             }
             AddLinksToNewsItems(news, news.Id);
             
@@ -61,6 +61,11 @@ namespace TechnicalRadiation.Services
         public IEnumerable<NewsItemDto> GetNewsByAuthor(int id)
         {
             var news = _newsItemRepository.GetNewsItemsByAuthorId(id).ToList();
+            if (news == null)
+            {
+                throw new ResourceNotFoundException($"News item with id {id} was not found. ");
+                
+            }
             news.ForEach(n =>
             {
                 AddLinksToNewsItems(n, n.Id);
@@ -70,6 +75,7 @@ namespace TechnicalRadiation.Services
 
         public NewsItemDto CreateNewsItem(NewsItemsInputModel newsItem)
         {
+            
             return _newsItemRepository.CreateNewsItem(newsItem);
         }
 

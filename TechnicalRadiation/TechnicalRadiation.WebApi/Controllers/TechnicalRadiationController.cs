@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using TechnicalRadiation.Models.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Services;
 using TechnicalRadiation.WebApi.Attributes;
+using TechnicalRadiation.WebApi.Extensions;
 
 namespace TechnicalRadiation.WebApi.Controllers
 {
@@ -90,7 +92,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("The News item model was badly constructed, feel bad");
+                throw new ModelFormatException("The News item model was badly constructed");
             }
 
             var newsItemDto = _newsItemService.CreateNewsItem(newsItem);
@@ -105,7 +107,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("The category was badly constructed");
+                throw new ModelFormatException(ModelState.RetrieveErrorString());
             }
 
             var categoryDto = _categoryService.CreateCategory(category);
@@ -119,7 +121,7 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("The author was badly constructed");
+                throw new ModelFormatException("The author was badly constructed");
             }
 
             var authorDto = _authorService.CreateAuthor(author);
@@ -133,6 +135,8 @@ namespace TechnicalRadiation.WebApi.Controllers
         {
             if (!ModelState.IsValid)
             {
+                var otherThing = ModelState;
+                var thing = HttpContext.Request.Headers["model"];
                 return BadRequest();
             }
 

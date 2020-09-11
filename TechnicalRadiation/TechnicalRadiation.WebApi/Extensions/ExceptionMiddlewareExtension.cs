@@ -1,9 +1,11 @@
 using System;
 using System.Net;
-using Exterminator.Models.Exceptions;
+using TechnicalRadiation.Models.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
+using TechnicalRadiation.Models;
+using TechnicalRadiation.Models.Exceptions;
 
 namespace TechnicalRadiation.WebApi.Extensions
 {
@@ -17,9 +19,6 @@ namespace TechnicalRadiation.WebApi.Extensions
                 {
                     var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
                     var exception = exceptionHandlerFeature.Error;
-
-                    //var logService = app.ApplicationServices.GetService(typeof(IlogService)) as IlogService;
-                    //logService.LogToFile();
 
                     var statusCode = exception switch
                     {
