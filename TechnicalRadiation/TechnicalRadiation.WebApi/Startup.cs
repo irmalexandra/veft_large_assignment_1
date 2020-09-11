@@ -1,18 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Headers;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using TechnicalRadiation.WebApi.ExceptionHandlerExtensions;
 
 namespace TechnicalRadiation.WebApi
 {
@@ -29,6 +20,8 @@ namespace TechnicalRadiation.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+         
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +32,9 @@ namespace TechnicalRadiation.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            
+            app.ConfigureExceptionHandler();
+                
             app.UseHttpsRedirection();
 
             app.UseRouting();

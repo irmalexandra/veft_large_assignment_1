@@ -4,6 +4,7 @@ using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories;
 using TechnicalRadiation.Models.Extensions;
 using System.Linq;
+using Exterminator.Models.Exceptions;
 using TechnicalRadiation.Models;
 
 
@@ -48,7 +49,12 @@ namespace TechnicalRadiation.Services
         public NewsItemDetailDto GetNewsItemById(int id)
         {
             var news = _newsItemRepository.GetNewsItemById(id);
+            if (news == null)
+            {
+                throw new ResourceNotFoundException($"News item with id {id} was not found, my guy. ");
+            }
             AddLinksToNewsItems(news, news.Id);
+            
             return news;
         }
 

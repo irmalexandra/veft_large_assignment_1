@@ -1,13 +1,13 @@
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace TechnicalRadiation.Models
+namespace Exterminator.Models.Exceptions
 {
     public class ExceptionModel
     {
         public int StatusCode { get; set; }
-        public string ExceptionMessage { get; set; }
-        public string StackTrace { get; set; }
+
+        public string Message { get; set; }
+
         public override string ToString() => JsonConvert.SerializeObject(this);
     }
 }

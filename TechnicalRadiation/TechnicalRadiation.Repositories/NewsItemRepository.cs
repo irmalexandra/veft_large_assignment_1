@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using TechnicalRadiation.Models.Dtos;
 using TechnicalRadiation.Models.Entities;
 using TechnicalRadiation.Models.InputModels;
 using TechnicalRadiation.Repositories.Data;
 using TechnicalRadiation.Models;
-using TechnicalRadiation.Models.Extensions;
 
 namespace TechnicalRadiation.Repositories
 {
@@ -33,17 +28,21 @@ namespace TechnicalRadiation.Repositories
         
         private NewsItemDetailDto ToNewsItemDetailDto(NewsItem newsitem)
         {
-            return new NewsItemDetailDto
+            if (newsitem != null)
             {
-                Id = newsitem.Id,
-                ImageSource = newsitem.ImageSource,
-                ShortDescription = newsitem.ShortDescription,
-                Title = newsitem.Title,
-                LongDescription = newsitem.LongDescription,
-                PublishDate = newsitem.PublishDate,
+                return new NewsItemDetailDto
+                {
+                    Id = newsitem.Id,
+                    ImageSource = newsitem.ImageSource,
+                    ShortDescription = newsitem.ShortDescription,
+                    Title = newsitem.Title,
+                    LongDescription = newsitem.LongDescription,
+                    PublishDate = newsitem.PublishDate,
                 
-            };
-            
+                };
+            }
+
+            return null;
         }
 
         private NewsItem ToNewsItem(NewsItemsInputModel newsItem, int id)
